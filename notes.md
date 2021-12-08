@@ -22,8 +22,17 @@ The there will be 5 phases of play.
         - If goal +1 to AI team
 At end of 5 phases of play, score and winner declared...
 If scores are equal. Penalty awarded to user team.
-    - User asked to put ball left or right.
-    - Random outcome.
-    - If miss. Opponent breaks and scores to win match
+- User asked to put ball left or right.
+- Random outcome.
+- If miss. Opponent breaks and scores to win match
 End program
 
+## Data Structure
+
+We need
+- Game
+- Username
+- Teams
+- Players
+- In-Game options
+- Score
