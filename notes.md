@@ -73,3 +73,55 @@ Actions :
 - Add players
 - Print game options
 - Return a score
+
+### Username
+Attributes :
+- username
+
+Actions:
+- adds username for user to use in game
+
+### Teams
+Attributes :
+- Team Name
+- Players
+
+Actions: 
+- Adds players to team
+- Prints team details
+
+### Players
+Attributes :
+- Player Name
+- Position
+
+Actions :
+- Gets player details for use in team class
+
+### UserOptions
+Attributes :
+- Attacking
+- Defending
+- Shoot
+- Pass
+- Slide Tackle
+- Block Tackle
+- Goal
+- No Goal
+- Score
+
+Actions :
+- Displays gameplay options
+- Gets user input for decision
+- Gets score outcome
+
+### Score
+Attributes :
+- User Score
+- AI Team Score
+- Total Score
+
+Actions :
+- Displays user and AI team score
+- Returns total score
+- Crowns champion of the game.
