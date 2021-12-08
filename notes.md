@@ -36,3 +36,40 @@ We need
 - Players
 - In-Game options
 - Score
+
+### Defining the data structure
+App
+- Displays welcome
+    - Displays game message with game name
+- Get username
+    - Gets input from user so app knows what to call them'
+- Selecting a team
+    - Menu displays team selection option
+    - Select and confirm team
+    - AI Team is automatically selected
+- Playing the match
+    - The teams and player lineups are displayed
+    - User calls heads/tails to choose team with possession
+    - Gameplay option will display with user to choose one.
+    - Result of gameplay option be returned to score
+- Finishing the match
+    - When turns are finished teams scores are printed to final score.
+    - Winner is announced
+
+## Classes
+### Game
+Attributes:
+- Name
+- Username
+- Teams
+- Players
+- User_Options
+- Score
+
+Actions :
+- Display welcome
+- Ask username
+- Select teams
+- Add players
+- Print game options
+- Return a score
