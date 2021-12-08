@@ -85,10 +85,12 @@ Actions:
 Attributes :
 - Team Name
 - Players
+- Score
 
 Actions: 
 - Adds players to team
 - Prints team details
+- Holds team score
 
 ### Players
 Attributes :
