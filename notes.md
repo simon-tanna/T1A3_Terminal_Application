@@ -26,3 +26,4 @@ If scores are equal. Penalty awarded to user team.
     - Random outcome.
     - If miss. Opponent breaks and scores to win match
 End program
+
