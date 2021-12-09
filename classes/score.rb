@@ -5,7 +5,10 @@ class Score
         @team = team
         @score = score
     end
-    
+
+    def to_s
+        "#{@team} - #{@score}"
+    end
     # def team
     # end
     
