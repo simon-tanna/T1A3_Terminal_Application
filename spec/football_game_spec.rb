@@ -4,7 +4,8 @@ require_relative "../classes/teams"
 require_relative "../classes/players"
 require_relative "../classes/user_options"
 require_relative "../classes/score"
-
+require_relative "../seed"
+require_relative "../index"
 # This is the first test created for the program.
 # It is testing the Score class
 describe "Test score and team values" do
@@ -18,9 +19,14 @@ describe "Test score and team values" do
     end
 end
 
-describe "Test UserOptions objects" do
+describe "Test team values" do
     # This will test the input results
-    it "it should store the array of options "
-
-
+    it "it should store the TeamInfo correctly" do
+        user_team_players = ["player1", "player2"]
+        bot_team_players = ["player1", "player2"]
+        team_info = [Teams.new("Buffon's Barons", user_team_players, 1), Teams.new("Barthez's Bozos", bot_team_players, 0)]
+        expect(team_info.length).to be < 3
+        expect(team_info[0].name).to eq("Buffon's Barons")
+    end
+end
 # end
