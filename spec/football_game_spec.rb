@@ -22,11 +22,12 @@ end
 describe "Test team values" do
     # This will test the input results
     it "it should store the TeamInfo correctly" do
-        user_team_players = ["player1", "player2"]
-        bot_team_players = ["player1", "player2"]
-        team_info = [Teams.new("Buffon's Barons", user_team_players, 1), Teams.new("Barthez's Bozos", bot_team_players, 0)]
-        expect(team_info.length).to be < 3
+        user_team_players = ["player1", "player2", "player3", "player4", "player5"]
+        bot_team_players = ["player1", "player2", "player3", "player4", "player5"]
+        team_info = [Teams.new("Buffon's Barons", user_team_players, 0), Teams.new("Barthez's Bandits", bot_team_players, 0)]
+        expect(team_info.length).to eq(2)
         expect(team_info[0].name).to eq("Buffon's Barons")
+        expect(team_info[1].players).to eq(bot_team_players)
     end
 end
 # end
