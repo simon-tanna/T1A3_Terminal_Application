@@ -30,4 +30,9 @@ describe "Test team values" do
         expect(team_info[0].score).to be == 1
     end
 end
+
+describe "Test user options" do
+    #this will test the validity of the in game options
+    it "it should"
+end
 # end
