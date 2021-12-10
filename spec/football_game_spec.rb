@@ -31,4 +31,8 @@ describe "Test team values" do
     end
 end
 
-describe
+describe "Test index case options"
+    #This test will make sure the main menu options work
+    it "it should return the correct option"
+        opt = "2"
+        expect option
