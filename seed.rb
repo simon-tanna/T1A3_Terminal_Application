@@ -15,6 +15,6 @@ def seed
     team_2 = Teams.new("Barthez's Bandits", team_2_players, 0)
 
     teams_array = [team_1, team_2]
-    game = Game.new(teams_array)
+    game = Game.new("Football Shootout", "5-a-side football sim", teams_array)
     return game
 end

@@ -1,9 +1,11 @@
 class Game
-    def initialize(teams)
+    def initialize(name, description, teams)
+        @name = name
+        @description = description
         @teams = teams
     end
 
     def to_s
-        "#{@teams}"
+        "#{@name}! The greatest #{@description}"
     end
-end
+end 

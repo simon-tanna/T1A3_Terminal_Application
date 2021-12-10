@@ -4,5 +4,6 @@ class GameEvents
         @event = event
     end
 
-    
+
+    def 
 end

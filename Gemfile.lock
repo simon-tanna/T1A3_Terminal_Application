@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    artii (2.1.2)
+    colorize (0.8.1)
     concurrent-ruby (1.1.9)
     diff-lcs (1.4.4)
     faker (2.19.0)
@@ -38,6 +40,8 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  artii
+  colorize
   faker
   rspec (~> 3.10)
   tty-prompt

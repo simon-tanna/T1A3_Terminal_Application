@@ -31,8 +31,8 @@ describe "Test team values" do
     end
 end
 
-describe "Test user options" do
-    #this will test the validity of the in game options
-    it "it should"
-end
+# describe "Test user options" do
+#     #this will test the validity of the in game options
+#     it "it should"
 # end
+# # end
