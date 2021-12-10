@@ -17,6 +17,6 @@ class Teams
     end
 
     def to_s
-        "Team: #{@name} Players: #{@players} Score: #{@score}"
+        "Team: #{@name} -- Players: #{@players}"
     end
 end
