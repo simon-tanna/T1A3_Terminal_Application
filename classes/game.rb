@@ -1,4 +1,5 @@
 class Game
+    attr_reader :name, :description, :teams
     def initialize(name, description, teams)
         @name = name
         @description = description
@@ -14,4 +15,5 @@ class Game
             team
         end
     end
+
 end 
