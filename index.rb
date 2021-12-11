@@ -43,15 +43,15 @@ end
 def info_menu(prompt,game)
         to_info = "y"
         while to_info == "y"
+            system "clear"
             puts "Team Information"
             team = team_select(prompt,game)
             puts team.all_team_info
             begin
             puts "Would you like to view another team? (press 'y' then enter to view another team. press 'n' then enter to return to the main menu"
             to_info = gets.chomp
-                if to_info == "n"
-                    puts "invalide"
-                else
+                if to_info != "n" && to_info != "y"
+                    raise StandardError
                 end
                 if to_info == ""
                     raise ArgumentError
@@ -60,25 +60,21 @@ def info_menu(prompt,game)
                     system "clear"
                     puts "You didn't enter an option! Please select 'y' or 'n' before pressing enter"
                     retry
+                rescue StandardError
+                    system "clear"
+                    puts "You didn't enter a valid option! Please select 'y' or 'n' before pressing enter"
+                    retry
                 end
             end
+            system "clear"
 end
-#                 end     
-# end
-# end
+
 # This is the method if user selects option 1 in main menu
 def rules
     puts "Hello World"
     puts "Press any key to return to the main menu"
     gets
 end
-
-# This is the method if the user selects option 2 in the main menu
-# def team_details(prompt)
-#     @teams.each do |team|
-#         team.name
-#     end
-# end
 
 # This is the method if the user selects option 3 in the main menu
 def main_game(game)
