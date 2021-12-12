@@ -65,7 +65,7 @@ def team_defend_2(prompt,game,user_team,bot_team)
     return defend
 end
 
-def team_attack_3(prompt,game,user_team)
+def team_attack_3(prompt,game,user_team,bot_team)
     attack_options = ["pass", "shoot"]
     attack = prompt.select("#{user_team} have the ball on the right hand side of the pitch. You have a team-mate in a good position outside the box but the opposing goalkeeper is off his line. Do you: ", attack_options)
     return attack
@@ -73,8 +73,14 @@ end
 
 def team_defend_3(prompt,game,user_team,bot_team)
     defend_options = ["slide tackle", "block tackle"]
-    defend = prompt.select("#{bot_team} are looking dangerous and are taking the ball into the final third of the pitch. The winger is looking to go past you. Do you: ", defend_options)
+    defend = prompt.select("#{bot_team} are storming into your half of the field. Their striker is about to shoot from distance. Do you: ", defend_options)
     return defend
+end
+
+def team_extra_time(prompt,game,user_team,bot_team)
+    attack_options = ["shoot left", "shoot right"]
+    attack = prompt.select("You are one-on-one with the opposition goalkeeper. Do you: ", attack_options)
+    return attack
 end
 #This is the main greeting
 puts ascii.asciify("Welcome to Football Shootout").colorize(:blue)
@@ -137,6 +143,8 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar)
     end
     if toss == user_team.toss
         puts "You have won the toss... Prepare to kick off!"
+        puts "PEEP!!!"
+        puts "The referee blows the whistle to start the game. You are keeping posession of the ball well!"
         attack_choice_1 = team_attack_1(prompt,game,user_team)
         if attack_choice_1 == user_team.attack_1
             user_team.score += 1
@@ -158,14 +166,14 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar)
         attack_choice_2 = team_attack_2(prompt,game,user_team,bot_team)
         if attack_choice_2 == user_team.attack_2
             user_team.score += 1
-            puts "GOAL your #{attack}"
+            puts "GOAL"
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
         else
             puts "Your attacking raid has come to nothing and now #{bot_team} have posession..."
         end
         puts "Your defence is under-pressure!"
         defend_choice_2 = team_defend_2(prompt,game,user_team,bot_team)
-        if defend_choice_2 != user_team.defend_1
+        if defend_choice_2 != user_team.defend_2
             bot_team.score += 1
             puts "GOAL for #{bot_team}"
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
@@ -176,19 +184,101 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar)
         attack_choice_3 = team_attack_3(prompt,game,user_team,bot_team)
         if attack_choice_3 == user_team.attack_3
             user_team.score += 1
-            puts "GOAL your #{attack}"
-            puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+            puts "GOAL"
+            # puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
         else
             puts "Your attacking raid has come to nothing and the referee has blown for full time."
         end
     else
+    # end
         puts "You lost the toss. #{bot_team} to kick off"
+        puts "PEEP!!!"
+        puts "The referee blows the whistle to start the game. Your opponents are keeping posession of the ball well!"
+        puts "Prepare to defend!"
+            defend_choice_1 = team_defend_1(prompt,game,user_team,bot_team)
+            if defend_choice_1 != user_team.defend_1
+                bot_team.score += 1
+                puts "GOAL for #{bot_team}"
+                puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+            else
+                puts "You have executed a perfectly timed tackle and regained posession. Well done!"
+            end
+            puts "You are keeping posession in the midfield. Each pass finds a team=mate perfectly"
+            attack_choice_1 = team_attack_1(prompt,game,user_team)
+            if attack_choice_1 == user_team.attack_1
+                user_team.score += 1
+                puts "GOAL"
+                puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+            else
+                puts "You have given away position to the opposition..."
+            end
+            puts "Your defence is under-pressure!"
+            defend_choice_2 = team_defend_2(prompt,game,user_team,bot_team)
+            if defend_choice_2 != user_team.defend_2
+                bot_team.score += 1
+                puts "GOAL for #{bot_team}"
+                puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+            else
+                puts "You have executed a perfectly timed tackle and regained posession. Well done!"
+            end
+            puts "Your team is now again on the attack!"
+            attack_choice_2 = team_attack_2(prompt,game,user_team,bot_team)
+            if attack_choice_2 == user_team.attack_2
+                user_team.score += 1
+                puts "GOAL"
+                puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+            else
+                puts "Your attacking raid has come to nothing and now #{bot_team} have posession..."
+            end
+            puts "Your opponent is launching one last counter-attack!"
+            defend_choice_3 = team_defend_3(prompt,game,user_team,bot_team)
+            if defend_choice_3 != user_team.defend_3
+                bot_team.score += 1
+                puts "GOAL for #{bot_team}"
+                puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+            else
+                puts "You have executed a perfectly timed tackle and regained posession. Well done!"
+            end
     end
+    if user_team.score == bot_team.score
+        puts "The scores are as follows..."
+        puts "#{user_team}: #{user_team.score}"
+        puts "#{bot_team}: #{bot_team.score}"
+        puts "The scores are level... Extra-Time"
+        puts "The referee decides that #{user_team} have been the better behaved team and awards you the kick-off!"
+        puts "PEEP! The referee's whistle blows and your team is immediately on the attack"
+        extra_time_choice = team_extra_time(prompt,game,user_team,bot_team)
+        if extra_time_choice == user_team.extra
+            user_team.score += 1
+            puts "GOAL!!!"
+            puts "#{user_team} WINS"
+            puts "Congratulations"
+        else
+            bot_team.score += 1
+            puts "The goalkeeper saves!"
+            puts "He spots his striker unmarked upfield and boots the ball towards him."
+            puts "The opposition striker controls the ball...."
+            puts "He spots your goalkeeper off his line and takes a long-range snapshot..."
+            puts "GOAL! #{bot_team} WINS"
+            puts "Better luck next time"
+        end
+    elsif user_team.score < bot_team.score
+            puts "#{user_team}: #{user_team.score}"
+            puts "#{bot_team}: #{bot_team.score}"
+            puts "#{bot_team} are the winners!"
+            puts "Better luck next time"
+    else
+        puts "#{user_team}: #{user_team.score}"
+        puts "#{bot_team}: #{bot_team.score}"
+        puts "#{user_team} are the winners!"
+        puts "Congratulations"
+    end
+
+
+
+
 end
-#     toss_result = ["heads", "tails"].sample
-#         if toss_result == 
-#     #here the code for the coin toss result will sit
-# end
+
 
 # This is the case for the main options menu
 option =""

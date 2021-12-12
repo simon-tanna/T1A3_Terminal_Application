@@ -48,10 +48,12 @@ def seed
     team_defend_2 = ["slide tackle", "block tackle"].sample
     team_defend_3 = ["slide tackle", "block tackle"].sample
 
-    team_1 = Teams.new("Barons", team_1_players, 0, team_1_captain, team_1_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3)
-    team_2 = Teams.new("Bandits", team_2_players, 0, team_2_captain, team_2_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3)
-    team_3 = Teams.new("Zoomers", team_3_players, 0, team_3_captain, team_3_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3)
-    team_4 = Teams.new("Scamps", team_4_players, 0, team_4_captain, team_4_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3)
+    team_extra = ["shoot left", "shoot right"].sample
+
+    team_1 = Teams.new("Barons", team_1_players, 0, team_1_captain, team_1_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
+    team_2 = Teams.new("Bandits", team_2_players, 0, team_2_captain, team_2_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
+    team_3 = Teams.new("Zoomers", team_3_players, 0, team_3_captain, team_3_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
+    team_4 = Teams.new("Scamps", team_4_players, 0, team_4_captain, team_4_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
 
     teams_array = [team_1, team_2, team_3, team_4]
     game = Game.new("Football Shootout", "5-a-Side Football Sim", teams_array)
