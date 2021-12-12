@@ -3,6 +3,7 @@ require_relative './seed.rb'
 require_relative './classes/teams.rb'
 require_relative './classes/game.rb'
 require_relative './classes/players.rb'
+require_relative './classes/game_events.rb'
 require 'tty-prompt'
 require 'colorize'
 require 'artii'
@@ -14,15 +15,33 @@ prompt = TTY::Prompt.new
 ascii = Artii::Base.new
 ascii_slant = Artii::Base.new :font => 'slant'
 bar = TTY::ProgressBar.new("reloading options menu [:bar]", bar_format: :star, total: 15)
-
+coin_bar = TTY::ProgressBar.new("Coin toss results processing [:bar]", bar_format: :box, total: 25)
 # puts game
 # puts game.print_teams
 
 #This is the option for the user to select a team.
-def team_select(prompt,game)
+def team_select_info(prompt,game)
     team = prompt.select("Choose a team to view the line-up...(use ↑/↓ arrows on your keyboard)", game.print_teams)
     return team
 end
+
+def team_select_user(prompt,game)
+    user_team = prompt.select("Choose your team...(use ↑/↓ arrows on your keyboard)", game.print_teams)
+    return user_team
+end
+
+def team_select_bot(prompt,game)
+    bot_team = prompt.select("Choose your opponent...(use ↑/↓ arrows on your keyboard)", game.print_teams)
+    return bot_team
+end
+
+def coin_toss(prompt,game)
+    coin_options = ["heads", "tails"]
+    toss = prompt.select("Choose heads or tails to decide who kicks off!", coin_options)
+    return toss
+end
+
+
 
 #This is the main greeting
 puts ascii.asciify("Welcome to Football Shootout").colorize(:blue)
@@ -39,6 +58,14 @@ def main_menu
     opt = gets.chomp
     return opt
 end
+
+# This is the method if user selects option 1 in main menu
+def rules
+    puts "Hello World"
+    puts "Press any key to return to the main menu"
+    gets
+end
+
 #this is the menu that lists the available teams and players
 def info_menu(prompt,game)
         to_info = "y"
@@ -69,16 +96,15 @@ def info_menu(prompt,game)
             system "clear"
 end
 
-# This is the method if user selects option 1 in main menu
-def rules
-    puts "Hello World"
-    puts "Press any key to return to the main menu"
-    gets
-end
-
 # This is the method if the user selects option 3 in the main menu
-def main_game(game)
-
+def main_game(prompt,game,toss,user_team,bot_team,coin_bar)
+    25.times do
+        sleep(0.1)
+        coin_bar.advance
+    end
+    toss_result = ["heads", "tails"].sample
+        if toss_result == 
+    #here the code for the coin toss result will sit
 end
 
 # This is the case for the main options menu
@@ -92,7 +118,10 @@ while option != "4"
         when "2"
             info_menu(prompt,game)
         when "3"
-            main_game(game)
+            user_team = team_select_user(prompt,game)
+            bot_team = team_select_bot(prompt,game)
+            toss = coin_toss(prompt,game)
+            main_game(prompt,game,toss,user_team,bot_team,coin_bar)
         when "4"
             next
         else
@@ -101,8 +130,8 @@ while option != "4"
             puts "Please select 1, 2, 3 or 4!"
             sleep(1.5)
             15.times do
-                sleep(0.2)
-                bar.advance  # by default increases by 1
+            sleep(0.2)
+            bar.advance  # by default increases by 1
             end
             system "clear"
     end

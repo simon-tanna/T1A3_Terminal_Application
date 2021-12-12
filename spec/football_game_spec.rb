@@ -4,7 +4,6 @@ require_relative "../classes/players"
 require_relative "../classes/user_options"
 require_relative "../classes/score"
 require_relative "../seed"
-require_relative "../index"
 require 'faker'
 # This is the test file for the simple football simulator game
 =begin
@@ -54,5 +53,6 @@ describe "Test player values" do
         expect(team_1.length).to eq(5)
         expect(team_1[4].number).to be == 5
     end
-
 end
+
+# describe ""
