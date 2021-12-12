@@ -33,12 +33,25 @@ def seed
     team_4_captain = "Mark Schwarzer"
 
     #This will determine who wins the coin toss
-    
+    team_1_toss = ["heads", "tails"].sample
+    team_2_toss = ["heads", "tails"].sample
+    team_3_toss = ["heads", "tails"].sample
+    team_4_toss = ["heads", "tails"].sample
 
-    team_1 = Teams.new("Barons", team_1_players, 0, team_1_captain, "")
-    team_2 = Teams.new("Bandits", team_2_players, 0, team_2_captain, "")
-    team_3 = Teams.new("Zoomers", team_3_players, 0, team_3_captain, "")
-    team_4 = Teams.new("Scamps", team_4_players, 0, team_4_captain, "")
+    #This will determine the attack results
+    team_attack_1 = ["pass", "shoot"].sample
+    team_attack_2 = ["pass", "shoot"].sample
+    team_attack_3 = ["pass", "shoot"].sample
+
+    #This will determine the defend results
+    team_defend_1 = ["slide tackle", "block tackle"].sample
+    team_defend_2 = ["slide tackle", "block tackle"].sample
+    team_defend_3 = ["slide tackle", "block tackle"].sample
+
+    team_1 = Teams.new("Barons", team_1_players, 0, team_1_captain, team_1_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3)
+    team_2 = Teams.new("Bandits", team_2_players, 0, team_2_captain, team_2_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3)
+    team_3 = Teams.new("Zoomers", team_3_players, 0, team_3_captain, team_3_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3)
+    team_4 = Teams.new("Scamps", team_4_players, 0, team_4_captain, team_4_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3)
 
     teams_array = [team_1, team_2, team_3, team_4]
     game = Game.new("Football Shootout", "5-a-Side Football Sim", teams_array)

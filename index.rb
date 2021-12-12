@@ -41,6 +41,12 @@ def coin_toss(prompt,game)
     return toss
 end
 
+def team_attack_1(prompt,game,user_team)
+    attack_options = ["pass", "shoot"]
+    attack = prompt.select("#{user_team} have the ball on the right hand side of the pitch. You have a team-mate in a good position outside the box but the opposing goalkeeper is off his line. Do you: ", attack_options)
+    return attack
+end
+
 
 
 #This is the main greeting
@@ -72,7 +78,7 @@ def info_menu(prompt,game)
         while to_info == "y"
             system "clear"
             puts "Team Information"
-            team = team_select(prompt,game)
+            team = team_select_info(prompt,game)
             puts team.all_team_info
             begin
             puts "Would you like to view another team? (press 'y' then enter to view another team. press 'n' then enter to return to the main menu"
@@ -102,10 +108,26 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar)
         sleep(0.1)
         coin_bar.advance
     end
-    toss_result = ["heads", "tails"].sample
-        if toss_result == 
-    #here the code for the coin toss result will sit
+    if toss == user_team.toss
+        puts "You have won the toss... Prepare to kick off!"
+        attack_choice_1 = team_attack_1(prompt,game,user_team)
+        if attack_choice_1 == user_team.attack_1
+            user_team.score += 1
+            puts "GOAL"
+            puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+        else
+            puts "You have given away position to the opposition..."
+        end
+        puts "Prepare to defend!"
+        defend_choice_1 = 
+    else
+        puts "you lose"
+    end
 end
+#     toss_result = ["heads", "tails"].sample
+#         if toss_result == 
+#     #here the code for the coin toss result will sit
+# end
 
 # This is the case for the main options menu
 option =""

@@ -9,4 +9,8 @@ class Player
     def to_s
         "Number: #{@number} | Name: #{@name} | Position: #{@position}"
     end
+
+    def player_name
+        "#{@name}"
+    end
 end

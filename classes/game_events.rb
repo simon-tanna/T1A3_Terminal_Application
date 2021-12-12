@@ -7,4 +7,4 @@ class GameEvents
         @extra = extra
         @toss = toss
     end
- 
+end 
