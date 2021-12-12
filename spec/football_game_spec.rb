@@ -4,6 +4,7 @@ require_relative "../classes/players"
 require_relative "../classes/user_options"
 require_relative "../classes/score"
 require_relative "../seed"
+require_relative "../index.rb"
 require 'faker'
 # This is the test file for the simple football simulator game
 =begin
@@ -41,7 +42,8 @@ describe "Test team values" do
         defend_1 = "block"
         defend_2 = "slide"
         defend_3 = "block"
-        team_info = [Teams.new("Barons", team_1_players, 1, team_1_captain, toss_result, attack_1, attack_2, attack_3, defend_1, defend_2, defend_3), Teams.new("Bandits", team_2_players, 0, team_2_captain, toss_result, attack_1, attack_2, attack_3, defend_1, defend_2, defend_3)]
+        extra = "shoot right"
+        team_info = [Teams.new("Barons", team_1_players, 1, team_1_captain, toss_result, attack_1, attack_2, attack_3, defend_1, defend_2, defend_3, extra), Teams.new("Bandits", team_2_players, 0, team_2_captain, toss_result, attack_1, attack_2, attack_3, defend_1, defend_2, defend_3, extra)]
         expect(team_info.length).to eq(2)
         expect(team_info[0].name).to eq("Barons")
         expect(team_info[1].players).to eq(team_2_players)
@@ -63,4 +65,5 @@ describe "Test player values" do
     end
 end
 
-# describe ""
+describe "Test Extra-Time"
+
