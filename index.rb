@@ -47,8 +47,35 @@ def team_attack_1(prompt,game,user_team)
     return attack
 end
 
+def team_defend_1(prompt,game,user_team,bot_team)
+    defend_options = ["slide tackle", "block tackle"]
+    defend = prompt.select("#{bot_team} are looking dangerous and are taking the ball into the final third of the pitch. The winger is looking to go past you. Do you: ", defend_options)
+    return defend
+end
 
+def team_attack_2(prompt,game,user_team,bot_team)
+    attack_options = ["dribble then shoot", "shoot from range"]
+    attack = prompt.select("#{user_team} have opened up space in the middle of the pitch. There is gaping hole in their defence with no team mates near you. Do you: ", attack_options)
+    return attack
+end
 
+def team_defend_2(prompt,game,user_team,bot_team)
+    defend_options = ["slide tackle", "block tackle"]
+    defend = prompt.select("#{bot_team} have broken away and you are now the only player between their striker and the goal! Do you: ", defend_options)
+    return defend
+end
+
+def team_attack_3(prompt,game,user_team)
+    attack_options = ["pass", "shoot"]
+    attack = prompt.select("#{user_team} have the ball on the right hand side of the pitch. You have a team-mate in a good position outside the box but the opposing goalkeeper is off his line. Do you: ", attack_options)
+    return attack
+end
+
+def team_defend_3(prompt,game,user_team,bot_team)
+    defend_options = ["slide tackle", "block tackle"]
+    defend = prompt.select("#{bot_team} are looking dangerous and are taking the ball into the final third of the pitch. The winger is looking to go past you. Do you: ", defend_options)
+    return defend
+end
 #This is the main greeting
 puts ascii.asciify("Welcome to Football Shootout").colorize(:blue)
 sleep(0.5)
@@ -119,9 +146,43 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar)
             puts "You have given away position to the opposition..."
         end
         puts "Prepare to defend!"
-        defend_choice_1 = 
+        defend_choice_1 = team_defend_1(prompt,game,user_team,bot_team)
+        if defend_choice_1 != user_team.defend_1
+            bot_team.score += 1
+            puts "GOAL for #{bot_team}"
+            puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+        else
+            puts "You have executed a perfectly timed tackle and regained posession. Well done!"
+        end
+        puts "Your team is now again on the attack!"
+        attack_choice_2 = team_attack_2(prompt,game,user_team,bot_team)
+        if attack_choice_2 == user_team.attack_2
+            user_team.score += 1
+            puts "GOAL your #{attack}"
+            puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+        else
+            puts "Your attacking raid has come to nothing and now #{bot_team} have posession..."
+        end
+        puts "Your defence is under-pressure!"
+        defend_choice_2 = team_defend_2(prompt,game,user_team,bot_team)
+        if defend_choice_2 != user_team.defend_1
+            bot_team.score += 1
+            puts "GOAL for #{bot_team}"
+            puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+        else
+            puts "You have executed a perfectly timed tackle and regained posession. Well done!"
+        end
+        puts "Your team is has time for one final attack!"
+        attack_choice_3 = team_attack_3(prompt,game,user_team,bot_team)
+        if attack_choice_3 == user_team.attack_3
+            user_team.score += 1
+            puts "GOAL your #{attack}"
+            puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+        else
+            puts "Your attacking raid has come to nothing and the referee has blown for full time."
+        end
     else
-        puts "you lose"
+        puts "You lost the toss. #{bot_team} to kick off"
     end
 end
 #     toss_result = ["heads", "tails"].sample

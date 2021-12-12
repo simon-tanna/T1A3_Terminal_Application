@@ -40,7 +40,7 @@ def seed
 
     #This will determine the attack results
     team_attack_1 = ["pass", "shoot"].sample
-    team_attack_2 = ["pass", "shoot"].sample
+    team_attack_2 = ["dribble then shoot", "shoot from range"].sample
     team_attack_3 = ["pass", "shoot"].sample
 
     #This will determine the defend results
