@@ -34,12 +34,14 @@ describe "Test team values" do
         team_2_players = ["player1", "player2", "player3", "player4", "player5"]
         team_1_captain = "Buffon"
         team_2_captain = "Barthez"
-        team_info = [Teams.new("Barons", team_1_players, 1, team_1_captain), Teams.new("Bandits", team_2_players, 0, team_2_captain)]
+        toss_result = ["heads", "tails"].sample
+        team_info = [Teams.new("Barons", team_1_players, 1, team_1_captain, toss_result), Teams.new("Bandits", team_2_players, 0, team_2_captain, toss_result)]
         expect(team_info.length).to eq(2)
         expect(team_info[0].name).to eq("Barons")
         expect(team_info[1].players).to eq(team_2_players)
         expect(team_info[0].score).to be == 1
         expect(team_info[1].captain).to eq(team_2_captain)
+        expect(team_info[0].toss).to eq(toss_result)
     end
 end
 

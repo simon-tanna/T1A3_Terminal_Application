@@ -1,10 +1,12 @@
 class Teams
     attr_reader :name, :players, :score, :captain
-    def initialize(name, players, score, captain)
+    attr_accessor :toss
+    def initialize(name, players, score, captain, toss)
         @name = name
         @players = players
         @score = score
         @captain = captain
+        @toss = toss
     end
 
     def to_s
