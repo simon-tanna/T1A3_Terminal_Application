@@ -190,7 +190,6 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar)
             puts "Your attacking raid has come to nothing and the referee has blown for full time."
         end
     else
-    # end
         puts "You lost the toss. #{bot_team} to kick off"
         puts "PEEP!!!"
         puts "The referee blows the whistle to start the game. Your opponents are keeping posession of the ball well!"
