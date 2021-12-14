@@ -16,5 +16,4 @@ class Game
             team
         end
     end
-
 end 

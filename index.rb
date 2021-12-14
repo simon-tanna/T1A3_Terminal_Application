@@ -3,7 +3,6 @@ require_relative './seed.rb'
 require_relative './classes/teams.rb'
 require_relative './classes/game.rb'
 require_relative './classes/players.rb'
-require_relative './classes/player_team.rb'
 require 'tty-prompt'
 require 'colorize'
 require 'artii'
@@ -90,6 +89,7 @@ def create_team(prompt,game,player_name)
     puts "lets create a team"
     team_name = ""
     captain = "#{player_name}"
+    i = 1
     team_new_players = []
     team_new_toss = ["heads", "tails"].sample
     team_attack_1 = ["pass", "shoot"].sample
@@ -114,9 +114,6 @@ def create_team(prompt,game,player_name)
     team_new_players << prompt.select("Choose your destiny?", choice_5)
     team_user = Teams.new(team_name, team_new_players, 0, captain, team_new_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
 end
-    
-
-
 
 #This is the main menu of game options
 def main_menu
@@ -135,6 +132,7 @@ def rules
     puts "Hello World"
     puts "Press any key to return to the main menu"
     gets
+    system "clear"
 end
 
 #this is the menu that lists the available teams and players
@@ -306,25 +304,26 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar)
         puts "#{user_team} are the winners!"
         puts "Congratulations"
     end
+    print "Press any key to return to the main menu: "
+    gets
 end
 
 
 
 #This is the main greeting
-
+puts ascii.asciify("Welcome to Football Shootout").colorize(:green)
+sleep(0.5)
+puts ascii_slant.asciify("the greatest 5-a-side sim").colorize(:red)
+sleep(0.5)
+print "Please enter your name: "
+player_name = gets.chomp
+while player_name == ""
+    print "You didn't enter a name. Please try again: "
+    player_name = gets.chomp
+end
 # This is the case for the main options menu
 option =""
 while option != "4"
-    puts ascii.asciify("Welcome to Football Shootout").colorize(:green)
-    sleep(0.5)
-    puts ascii_slant.asciify("the greatest 5-a-side sim").colorize(:red)
-    sleep(0.5)
-    print "Please enter your name: "
-    player_name = gets.chomp
-    while player_name == ""
-        print "You didn't enter a name. Please try again: "
-        player_name = gets.chomp
-    end
     puts "Thank you #{player_name} for choosing Football Shootout"
     sleep(0.5)
     puts "Select an option below to begin your journey to becoming a 5-a-side master:"

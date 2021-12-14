@@ -3,7 +3,7 @@ require_relative "../classes/teams"
 require_relative "../classes/players"
 require_relative "../classes/score"
 require_relative "../seed"
-# require_relative "../index.rb"
+require_relative "../index.rb"
 require 'faker'
 # This is the test file for the simple football simulator game
 =begin
@@ -64,5 +64,6 @@ describe "Test player values" do
     end
 end
 
-describe "Test Extra-Time"
+describe "Test User Team Values"
+    
 
