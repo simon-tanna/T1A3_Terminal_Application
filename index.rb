@@ -115,6 +115,19 @@ def create_team(prompt,game,player_name,ascii_slant)
     team_user = Teams.new(team_name, team_new_players, 0, captain, team_new_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
 end
 
+# def create_team(prompt,game,player_name,ascii_slant)
+#     game.create_user_team
+#     puts ascii_slant.asciify("Time to Create Your Team of Legends!").colorize(:red)
+#     puts "What would you like to call your team?"
+#     team_name = gets.chomp
+#     puts "Select your legends"
+#     team_new_players << prompt.select("Choose your destiny?", choice_1)
+#     team_new_players << prompt.select("Choose your destiny?", choice_2)
+#     team_new_players << prompt.select("Choose your destiny?", choice_3)
+#     team_new_players << prompt.select("Choose your destiny?", choice_4)
+#     team_new_players << prompt.select("Choose your destiny?", choice_5)
+# end
+
 #This is the main menu of game options
 def main_menu
     puts "1. View Rules".colorize(:green)
@@ -168,7 +181,7 @@ end
 
 
 # This is the method if the user selects option 3 in the main menu
-def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar)
+def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,ascii_slant)
     25.times do
         sleep(0.05)
         coin_bar.advance
@@ -180,9 +193,13 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar)
             kickoff_bar.advance
         end
         system "clear"
-        puts 
-        "PEEP!!!"
-        puts "The referee blows the whistle to start the game. You are keeping posession of the ball well!"
+        15.times {puts ascii_slant.asciify("PEEP!!!").colorize(:color => :blue, :background => :white)
+            sleep(0.1)
+            system "clear"
+            puts ascii_slant.asciify("PEEP!!!").colorize(:color => :white, :background => :blue)
+            sleep(0.1)
+            system "clear"}
+            puts "The referee blows the whistle to start the game. You are keeping posession of the ball well!"
         attack_choice_1 = team_attack_1(prompt,game,user_team)
         if attack_choice_1 == user_team.attack_1
             user_team.score += 1
@@ -228,8 +245,13 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar)
             puts "Your attacking raid has come to nothing and the referee has blown for full time."
         end
     else
-        puts "You lost the toss. #{bot_team} to kick off"
-        puts "PEEP!!!"
+        puts "You lost the toss. #{bot_team} to kick off" 
+        15.times {puts ascii_slant.asciify("PEEP!!!").colorize(:color => :blue, :background => :white)
+            sleep(0.1)
+            system "clear"
+            puts ascii_slant.asciify("PEEP!!!").colorize(:color => :white, :background => :blue)
+            sleep(0.1)
+            system "clear"}
         puts "The referee blows the whistle to start the game. Your opponents are keeping posession of the ball well!"
         puts "Prepare to defend!"
             defend_choice_1 = team_defend_1(prompt,game,user_team,bot_team)
@@ -357,7 +379,7 @@ while option != "4"
             system "clear"
             toss = coin_toss(prompt,game)
             system "clear"
-            main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar)
+            main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,ascii_slant)
         when "4"
             puts "Are you sure you want to "
         else
