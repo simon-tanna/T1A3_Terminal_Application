@@ -1,6 +1,6 @@
 class Teams
-    attr_reader :players, :captain
-    attr_accessor :name, :toss, :attack_1, :attack_2, :attack_3, :score, :defend_1, :defend_2, :defend_3, :extra
+    attr_reader :captain
+    attr_accessor :name, :players, :toss, :attack_1, :attack_2, :attack_3, :score, :defend_1, :defend_2, :defend_3, :extra
     def initialize(name, players, score, captain, toss, attack_1, attack_2, attack_3, defend_1, defend_2, defend_3, extra)
         @name = name
         @players = players

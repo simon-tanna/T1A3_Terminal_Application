@@ -17,7 +17,7 @@ ascii = Artii::Base.new
 ascii_slant = Artii::Base.new :font => 'slant'
 bar = TTY::ProgressBar.new("reloading options menu [:bar]", bar_format: :star, total: 15)
 coin_bar = TTY::ProgressBar.new("Coin toss results processing [:bar]", bar_format: :box, total: 25)
-straight_font = TTY::Font.new(:straight)
+starwars_font = TTY::Font.new(:starwars)
 
 
 #Below are all methods used to run the game.
@@ -85,11 +85,10 @@ def team_extra_time(prompt,game,user_team,bot_team)
     return attack
 end
 
-def create_team(prompt,game,player_name)
-    puts "lets create a team"
+def create_team(prompt,game,player_name,ascii_slant)
+    puts ascii_slant.asciify("Time to Create Your Team of Legends!").colorize(:red)
     team_name = ""
     captain = "#{player_name}"
-    i = 1
     team_new_players = []
     team_new_toss = ["heads", "tails"].sample
     team_attack_1 = ["pass", "shoot"].sample
@@ -99,14 +98,14 @@ def create_team(prompt,game,player_name)
     team_defend_2 = ["slide tackle", "block tackle"].sample
     team_defend_3 = ["slide tackle", "block tackle"].sample
     team_extra = ["shoot left", "shoot right"].sample
-    choice_1 = {"Pele" => 1, "Diego Maradona" => 2}
-    choice_2 = {"Bobby Moore" => 1, "Franz Beckenbauer" => 2}
-    choice_3 = {"Lev Yashin" => 1, "Dino Zoff" => 2}
-    choice_4 = {"Didier Deschamps" => 1, "Paul Breitner" => 2}
-    choice_5 = {"Cafu" => 1, "Marco Tardelli" => 2}
+    choice_1 = Player.new("Pele", 10), Player.new("Diego Maradona", 10)
+    choice_2 = Player.new("Bobby Moore", 6), Player.new("Franz Beckenbauer", 5)
+    choice_3 = Player.new("Lev Yashin", 1), Player.new("Dino Zoff", 1)
+    choice_4 = Player.new("Didier Deschamps", 7), Player.new("Paul Breitner", 8)
+    choice_5 = Player.new("Cafu", 2), Player.new("Marco Tardelli", 14)
     puts "What would you like to call your team?"
     team_name = gets.chomp
-    puts "Now select your players"
+    puts "Select your legends"
     team_new_players << prompt.select("Choose your destiny?", choice_1)
     team_new_players << prompt.select("Choose your destiny?", choice_2)
     team_new_players << prompt.select("Choose your destiny?", choice_3)
@@ -136,11 +135,11 @@ def rules
 end
 
 #this is the menu that lists the available teams and players
-def info_menu(prompt,game)
+def info_menu(prompt,game,ascii)
     to_info = "y"
     while to_info == "y"
         system "clear"
-        puts "Team Information"
+        puts ascii.asciify("Team Information")
         team = team_select_info(prompt,game)
         puts team.all_team_info
         begin
@@ -170,7 +169,7 @@ end
 # This is the method if the user selects option 3 in the main menu
 def main_game(prompt,game,toss,user_team,bot_team,coin_bar)
     25.times do
-        sleep(0.1)
+        sleep(0.05)
         coin_bar.advance
     end
     if toss == user_team.toss
@@ -309,7 +308,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar)
 end
 
 
-
+system "clear"
 #This is the main greeting
 puts ascii.asciify("Welcome to Football Shootout").colorize(:green)
 sleep(0.5)
@@ -332,12 +331,25 @@ while option != "4"
         when "1"
             rules
         when "2"
-            info_menu(prompt,game)
+            info_menu(prompt,game,ascii)
         when "3"
-            # user_team = team_select_user(prompt,game)
-            user_team = create_team(prompt,game,player_name)
+            system "clear"
+            user_team = create_team(prompt,game,player_name,ascii_slant)
+            system "clear"
+            puts ascii_slant.asciify("Your Team of Legends are...").colorize(:green)
+            puts user_team.all_team_info
+            print "Press any key to continue and select your opponent..."
+            gets
+            system "clear"
             bot_team = team_select_bot(prompt,game)
+            system "clear"
+            puts ascii_slant.asciify("Your Opponents are...").colorize(:red)
+            puts bot_team.all_team_info
+            print "Press any key to continue to the coin toss..."
+            gets
+            system "clear"
             toss = coin_toss(prompt,game)
+            system "clear"
             main_game(prompt,game,toss,user_team,bot_team,coin_bar)
         when "4"
             puts "Are you sure you want to "
