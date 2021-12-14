@@ -17,6 +17,7 @@ ascii = Artii::Base.new
 ascii_slant = Artii::Base.new :font => 'slant'
 bar = TTY::ProgressBar.new("reloading options menu [:bar]", bar_format: :star, total: 15)
 coin_bar = TTY::ProgressBar.new("Coin toss results processing [:bar]", bar_format: :box, total: 25)
+kickoff_bar = TTY::ProgressBar.new("Preparing to kick-off: [:bar]", bar_format: :box, total: 35)
 starwars_font = TTY::Font.new(:starwars)
 
 
@@ -167,14 +168,20 @@ end
 
 
 # This is the method if the user selects option 3 in the main menu
-def main_game(prompt,game,toss,user_team,bot_team,coin_bar)
+def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar)
     25.times do
         sleep(0.05)
         coin_bar.advance
     end
     if toss == user_team.toss
-        puts "You have won the toss... Prepare to kick off!"
-        puts "PEEP!!!"
+        puts ascii.asciify("You have won the toss!").colorize(:green)
+        35.times do
+            sleep(0.03)
+            kickoff_bar.advance
+        end
+        system "clear"
+        puts 
+        "PEEP!!!"
         puts "The referee blows the whistle to start the game. You are keeping posession of the ball well!"
         attack_choice_1 = team_attack_1(prompt,game,user_team)
         if attack_choice_1 == user_team.attack_1
@@ -350,16 +357,16 @@ while option != "4"
             system "clear"
             toss = coin_toss(prompt,game)
             system "clear"
-            main_game(prompt,game,toss,user_team,bot_team,coin_bar)
+            main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar)
         when "4"
             puts "Are you sure you want to "
         else
             puts "Invalid option".colorize(:red)
-            sleep(1.5)
+            sleep(1)
             puts "Please select 1, 2, 3 or 4!"
-            sleep(1.5)
+            sleep(1)
             15.times do
-            sleep(0.2)
+            sleep(0.05)
             bar.advance  # by default increases by 1
             end
             system "clear"
