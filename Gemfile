@@ -12,3 +12,4 @@ gem "tty-prompt"
 gem "colorize"
 gem "artii"
 gem "tty-progressbar"
+gem 'tty-font'

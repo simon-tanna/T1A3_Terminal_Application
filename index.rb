@@ -3,11 +3,13 @@ require_relative './seed.rb'
 require_relative './classes/teams.rb'
 require_relative './classes/game.rb'
 require_relative './classes/players.rb'
-require_relative './classes/game_events.rb'
+require_relative './classes/player_team.rb'
 require 'tty-prompt'
 require 'colorize'
 require 'artii'
 require 'tty-progressbar'
+require 'tty-font'
+require 'faker'
 
 #
 game = seed
@@ -16,10 +18,11 @@ ascii = Artii::Base.new
 ascii_slant = Artii::Base.new :font => 'slant'
 bar = TTY::ProgressBar.new("reloading options menu [:bar]", bar_format: :star, total: 15)
 coin_bar = TTY::ProgressBar.new("Coin toss results processing [:bar]", bar_format: :box, total: 25)
-# puts game
-# puts game.print_teams
+straight_font = TTY::Font.new(:straight)
 
-#This is the option for the user to select a team.
+
+#Below are all methods used to run the game.
+
 def team_select_info(prompt,game)
     team = prompt.select("Choose a team to view the line-up...(use ↑/↓ arrows on your keyboard)", game.print_teams)
     return team
@@ -82,17 +85,45 @@ def team_extra_time(prompt,game,user_team,bot_team)
     attack = prompt.select("You are one-on-one with the opposition goalkeeper. Do you: ", attack_options)
     return attack
 end
-#This is the main greeting
-puts ascii.asciify("Welcome to Football Shootout").colorize(:blue)
-sleep(0.5)
-puts ascii_slant.asciify("the greatest 5-a-side sim").colorize(:red)
-sleep(0.5)
+
+def create_team(prompt,game,player_name)
+    puts "lets create a team"
+    team_name = ""
+    captain = "#{player_name}"
+    team_new_players = []
+    team_new_toss = ["heads", "tails"].sample
+    team_attack_1 = ["pass", "shoot"].sample
+    team_attack_2 = ["dribble then shoot", "shoot from range"].sample
+    team_attack_3 = ["pass", "shoot"].sample
+    team_defend_1 = ["slide tackle", "block tackle"].sample
+    team_defend_2 = ["slide tackle", "block tackle"].sample
+    team_defend_3 = ["slide tackle", "block tackle"].sample
+    team_extra = ["shoot left", "shoot right"].sample
+    choice_1 = {"Pele" => 1, "Diego Maradona" => 2}
+    choice_2 = {"Bobby Moore" => 1, "Franz Beckenbauer" => 2}
+    choice_3 = {"Lev Yashin" => 1, "Dino Zoff" => 2}
+    choice_4 = {"Didier Deschamps" => 1, "Paul Breitner" => 2}
+    choice_5 = {"Cafu" => 1, "Marco Tardelli" => 2}
+    puts "What would you like to call your team?"
+    team_name = gets.chomp
+    puts "Now select your players"
+    team_new_players << prompt.select("Choose your destiny?", choice_1)
+    team_new_players << prompt.select("Choose your destiny?", choice_2)
+    team_new_players << prompt.select("Choose your destiny?", choice_3)
+    team_new_players << prompt.select("Choose your destiny?", choice_4)
+    team_new_players << prompt.select("Choose your destiny?", choice_5)
+    team_user = Teams.new(team_name, team_new_players, 0, captain, team_new_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
+end
+    
+
+
+
 #This is the main menu of game options
 def main_menu
-    puts "1. View Rules"
-    puts "2. View Team Details"
-    puts "3. Begin Game"
-    puts "4. Exit Game"
+    puts "1. View Rules".colorize(:green)
+    puts "2. View Team Details".colorize(:green)
+    puts "3. Begin Game".colorize(:green)
+    puts "4. Exit Game".colorize(:green)
     print "Please select an option (1 - 4):"
     opt = gets.chomp
     return opt
@@ -100,6 +131,7 @@ end
 
 # This is the method if user selects option 1 in main menu
 def rules
+    system "clear"
     puts "Hello World"
     puts "Press any key to return to the main menu"
     gets
@@ -107,33 +139,35 @@ end
 
 #this is the menu that lists the available teams and players
 def info_menu(prompt,game)
-        to_info = "y"
-        while to_info == "y"
-            system "clear"
-            puts "Team Information"
-            team = team_select_info(prompt,game)
-            puts team.all_team_info
-            begin
-            puts "Would you like to view another team? (press 'y' then enter to view another team. press 'n' then enter to return to the main menu"
-            to_info = gets.chomp
-                if to_info != "n" && to_info != "y"
-                    raise StandardError
-                end
-                if to_info == ""
-                    raise ArgumentError
-                end
-                rescue ArgumentError
-                    system "clear"
-                    puts "You didn't enter an option! Please select 'y' or 'n' before pressing enter"
-                    retry
-                rescue StandardError
-                    system "clear"
-                    puts "You didn't enter a valid option! Please select 'y' or 'n' before pressing enter"
-                    retry
-                end
+    to_info = "y"
+    while to_info == "y"
+        system "clear"
+        puts "Team Information"
+        team = team_select_info(prompt,game)
+        puts team.all_team_info
+        begin
+        puts "Would you like to view another team? (press 'y' then enter to view another team. press 'n' then enter to return to the main menu"
+        to_info = gets.chomp
+            if to_info != "n" && to_info != "y"
+                raise StandardError
             end
-            system "clear"
+            if to_info == ""
+                raise ArgumentError
+            end
+            rescue ArgumentError
+                system "clear"
+                puts "You didn't enter an option! Please select 'y' or 'n' before pressing enter"
+                retry
+            rescue StandardError
+                system "clear"
+                puts "You didn't enter a valid option! Please select 'y' or 'n' before pressing enter"
+                retry
+            end
+        end
+        system "clear"
 end
+
+
 
 # This is the method if the user selects option 3 in the main menu
 def main_game(prompt,game,toss,user_team,bot_team,coin_bar)
@@ -272,16 +306,27 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar)
         puts "#{user_team} are the winners!"
         puts "Congratulations"
     end
-
-
-
-
 end
 
+
+
+#This is the main greeting
 
 # This is the case for the main options menu
 option =""
 while option != "4"
+    puts ascii.asciify("Welcome to Football Shootout").colorize(:green)
+    sleep(0.5)
+    puts ascii_slant.asciify("the greatest 5-a-side sim").colorize(:red)
+    sleep(0.5)
+    print "Please enter your name: "
+    player_name = gets.chomp
+    while player_name == ""
+        print "You didn't enter a name. Please try again: "
+        player_name = gets.chomp
+    end
+    puts "Thank you #{player_name} for choosing Football Shootout"
+    sleep(0.5)
     puts "Select an option below to begin your journey to becoming a 5-a-side master:"
     option = main_menu
     case option
@@ -290,12 +335,13 @@ while option != "4"
         when "2"
             info_menu(prompt,game)
         when "3"
-            user_team = team_select_user(prompt,game)
+            # user_team = team_select_user(prompt,game)
+            user_team = create_team(prompt,game,player_name)
             bot_team = team_select_bot(prompt,game)
             toss = coin_toss(prompt,game)
             main_game(prompt,game,toss,user_team,bot_team,coin_bar)
         when "4"
-            next
+            puts "Are you sure you want to "
         else
             puts "Invalid option".colorize(:red)
             sleep(1.5)

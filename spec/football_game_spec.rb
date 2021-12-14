@@ -1,10 +1,9 @@
 require_relative "../classes/game"
 require_relative "../classes/teams"
 require_relative "../classes/players"
-require_relative "../classes/user_options"
 require_relative "../classes/score"
 require_relative "../seed"
-require_relative "../index.rb"
+# require_relative "../index.rb"
 require 'faker'
 # This is the test file for the simple football simulator game
 =begin
@@ -57,7 +56,7 @@ describe "Test player values" do
     it "it should store the player details correctly" do
         team_array = []
         for i in 1..5
-            team_array << Player.new(Faker::Sports::Football.player, i ,Faker::Sports::Football.position)
+            team_array << Player.new(Faker::Sports::Football.player, i)
         end
         team_1 = team_array
         expect(team_1.length).to eq(5)
