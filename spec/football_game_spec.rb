@@ -64,6 +64,24 @@ describe "Test player values" do
     end
 end
 
-describe "Test User Team Values"
+describe "Test User Team Values" do
+    it "it should add +1 goal to the user team score" do
+        team_name = "GOATS"
+        captain = "Football Fan"
+        score = 0
+        team_new_players = ["player1", "player2", "player3", "player4", "player5"]
+        team_new_toss = ["heads", "tails"].sample
+        team_attack_1 = ["pass", "shoot"].sample
+        team_attack_2 = ["dribble then shoot", "shoot from range"].sample
+        team_attack_3 = ["pass", "shoot"].sample
+        team_defend_1 = ["slide tackle", "block tackle"].sample
+        team_defend_2 = ["slide tackle", "block tackle"].sample
+        team_defend_3 = ["slide tackle", "block tackle"].sample
+        team_extra = ["shoot left", "shoot right"].sample
+        team_user = Teams.new(team_name, team_new_players, score, captain, team_new_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
+        expect(team_user.name).to eq("GOATS")
+    end
+
+end
     
 

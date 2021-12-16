@@ -106,8 +106,17 @@ def create_team(prompt,game,player_name,ascii_slant)
     choice_3 = Player.new("Lev Yashin", 1), Player.new("Dino Zoff", 1)
     choice_4 = Player.new("Didier Deschamps", 7), Player.new("Paul Breitner", 8)
     choice_5 = Player.new("Cafu", 2), Player.new("Marco Tardelli", 14)
+    begin
     puts "What would you like to call your team?"
     team_name = gets.chomp
+        if team_name == ""
+            raise ArgumentError
+        end
+        rescue ArgumentError
+            system "clear"
+            puts "You didn't enter a team name. Please try again!"
+            retry
+        end
     puts "Select your legends"
     team_new_players << prompt.select("Choose your star striker: ", choice_1)
     team_new_players << prompt.select("Choose your defensive rock: ", choice_2)
