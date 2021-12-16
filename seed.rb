@@ -25,7 +25,7 @@ def seed
 
     team_1_captain = "Gianluigi Buffon"
     team_2_captain = "Fabian Barthez"
-    team_3_captain = "Andoni Zubizarreta"
+    team_3_captain = "Rene Higuita"
     team_4_captain = "Mark Schwarzer"
 
     #This will determine who wins the coin toss
@@ -48,7 +48,7 @@ def seed
 
     team_1 = Teams.new("Barons", team_1_players, 0, team_1_captain, team_1_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
     team_2 = Teams.new("Bandits", team_2_players, 0, team_2_captain, team_2_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
-    team_3 = Teams.new("Zoomers", team_3_players, 0, team_3_captain, team_3_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
+    team_3 = Teams.new("Pepitas", team_3_players, 0, team_3_captain, team_3_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
     team_4 = Teams.new("Scamps", team_4_players, 0, team_4_captain, team_4_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
 
     teams_array = [team_1, team_2, team_3, team_4]

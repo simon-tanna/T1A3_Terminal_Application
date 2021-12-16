@@ -230,10 +230,12 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         if attack_choice_1 == user_team.attack_1
             user_team.score += 1
             puts ascii.asciify("GOAL!!!").colorize(:green)
-            sleep(1)
+            sleep(1.5)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+            sleep(1.5)
         else
             puts "You have given away position to the opposition...".colorize(:red)
+            sleep(2)
         end
         # This is the progress bar informing the user that the next phase of play is about to begin
         35.times do
@@ -250,10 +252,12 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
             bot_team.score += 1
             puts ascii_slant.asciify("GOAL for").colorize(:red)
             puts ascii_slant.asciify("#{bot_team}").colorize(:red)
-            sleep(1)
+            sleep(1.5)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+            sleep(1.5)
         else
             puts "You have executed a perfectly timed tackle and regained posession. Well done!".colorize(:green)
+            sleep(2)
         end
         # This is the progress bar informing the user that the next phase of play is about to begin
         35.times do
@@ -269,10 +273,12 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         if attack_choice_2 == user_team.attack_2
             user_team.score += 1
             puts ascii.asciify("GOAL!!!").colorize(:green)
-            sleep(1)
+            sleep(1.5)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+            sleep(1.5)
         else
             puts "Your attacking raid has come to nothing and now #{bot_team} have posession...".colorize(:red)
+            sleep(2)
         end
         # This is the progress bar informing the user that the next phase of play is about to begin
         35.times do
@@ -289,10 +295,12 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
             bot_team.score += 1
             puts ascii.asciify("GOAL for").colorize(:red)
             puts ascii_slant.asciify("#{bot_team}").colorize(:red)
-            sleep(1)
+            sleep(1.5)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+            sleep(1.5)
         else
             puts "You have executed a perfectly timed tackle and regained posession. Well done!".colorize(:green)
+            sleep(2)
         end
         # This is the progress bar informing the user that the next phase of play is about to begin
         35.times do
@@ -308,8 +316,10 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         if attack_choice_3 == user_team.attack_3
             user_team.score += 1
             puts ascii.asciify("GOAL").colorize(:green)
+            sleep(2.5)
         else
             puts "Your attacking raid has come to nothing and the referee has blown for full time."
+            sleep(2.5)
         end
     # This is invoked when the user team loses the coin toss
     else
@@ -335,10 +345,12 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
             bot_team.score += 1
             puts ascii_slant.asciify("GOAL for").colorize(:red)
             puts ascii_slant.asciify("#{bot_team}").colorize(:red)
-            sleep(1)
+            sleep(1.5)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+            sleep(1.5)
         else                
             puts "You have executed a perfectly timed tackle and regained posession. Well done!".colorize(:green)
+            sleep(2)
         end
         # This is the progress bar informing the user that the next phase of play is about to begin
         35.times do
@@ -354,10 +366,12 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         if attack_choice_1 == user_team.attack_1
             user_team.score += 1
             puts ascii.asciify("GOAL").colorize(:green)
-            sleep(1)
+            sleep(1.5)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+            sleep(1.5)
         else
             puts "You have given away position to the opposition...".colorize(:red)
+            sleep(2)
         end
         # This is the progress bar informing the user that the next phase of play is about to begin
         35.times do
@@ -374,10 +388,12 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
             bot_team.score += 1
             puts ascii_slant.asciify("GOAL for").colorize(:red)
             puts ascii_slant.asciify("#{bot_team}").colorize(:red)
-            sleep(1)
+            sleep(1.5)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+            sleep(1.5)
         else
             puts "You have executed a perfectly timed tackle and regained posession. Well done!".colorize(:green)
+            sleep(2)
         end
         # This is the progress bar informing the user that the next phase of play is about to begin
         35.times do
@@ -393,10 +409,12 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         if attack_choice_2 == user_team.attack_2
             user_team.score += 1
             puts ascii.asciify("GOAL").colorize(:green)
-            sleep(1)
+            sleep(1.5)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+            sleep(1.5)
         else
             puts "Your attacking raid has come to nothing and now #{bot_team} have posession...".colorize(:red)
+            sleep(2)
         end
         35.times do
         sleep(0.04)
@@ -411,10 +429,10 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
             bot_team.score += 1
             puts ascii_slant.asciify("GOAL for").colorize(:red)
             puts ascii_slant.asciify("#{bot_team}").colorize(:red)
-            sleep(2)
+            sleep(2.5)
         else
-            puts "You have executed a perfectly timed tackle and regained posession. Well done!".colorize(:green)
-            sleep(2)
+            puts "You have executed a perfectly timed tackle and regained posession. Well done!...".colorize(:green)
+            sleep(2.5)
         end
     end
 
@@ -431,7 +449,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
     # This is the loop that returns a winner or begins extra time
     while user_team.score == bot_team.score
         puts "The scores are as follows..."
-        sleep(1)
+        sleep(1.5)
         puts "#{user_team}: #{user_team.score}"
         sleep(1.5)
         puts "#{bot_team}: #{bot_team.score}"
@@ -440,7 +458,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         sleep(1.5)
         system "clear"
         puts ascii_slant.asciify("Extra-Time!!!")
-        sleep(1.5)
+        sleep(2)
         puts "The referee decides that #{user_team} have been the better behaved team and awards you the kick-off!".colorize(:blue)
         sleep(1.5)
         puts "PEEP! The referee's whistle blows and your team is immediately on the attack".colorize(:green)
@@ -452,47 +470,48 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
             sleep(1.5)
             puts ascii.asciify("#{user_team}").colorize(:green)
             puts ascii.asciify("HAVE SCORED").colorize(:green)
-            sleep(1)
+            sleep(2)
         else
             system "clear"
             bot_team.score += 1
             puts "The goalkeeper saves!".colorize(:red)
-            sleep(1)
+            sleep(1.5)
             puts "He spots his striker unmarked upfield and boots the ball towards him."
             sleep(1)
             puts "The opposition striker controls the ball...."
-            sleep(1)
+            sleep(1.5)
             puts "He spots your goalkeeper off his line and takes a long-range snapshot..."
             sleep(2)
             puts ascii_slant.asciify("GOAL!").colorize(:red)
-            sleep(1)
+            sleep(2)
             puts ascii_slant.asciify("#{bot_team}").colorize(:red)
             puts ascii_slant.asciify("Have scored...").colorize(:red)
-            sleep(1)
+            sleep(2)
         end
     end
 
     # This returns the result if the bot team wins
     if user_team.score < bot_team.score
             puts "#{user_team}: #{user_team.score}"
-            sleep(1)
+            sleep(1.5)
             puts "#{bot_team}: #{bot_team.score}"
-            sleep(1)
+            sleep(1.5)
             puts ascii_slant.asciify("#{bot_team}").colorize(:red)
             puts ascii_slant.asciify("are the winners!").colorize(:red)
-            sleep(2)
+            sleep(3)
             puts "Better luck next time"
-            sleep(2)
+            sleep(3)
     # This returns the result if the user team wins
     else
         puts "#{user_team}: #{user_team.score}"
-        sleep(1)
+        sleep(2)
         puts "#{bot_team}: #{bot_team.score}"
-        sleep(1)
+        sleep(2)
         puts ascii_slant.asciify("#{user_team}").colorize(:green)
         puts ascii_slant.asciify("are the winners!").colorize(:green)
         sleep(2)
         puts "Congratulations"
+        sleep(3)
     end
     sleep(2)
     system "clear"
