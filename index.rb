@@ -18,10 +18,18 @@ ascii_slant = Artii::Base.new :font => 'slant'
 bar = TTY::ProgressBar.new("reloading options menu [:bar]", bar_format: :star, total: 15)
 coin_bar = TTY::ProgressBar.new("Coin toss results processing [:bar]", bar_format: :box, total: 25)
 kickoff_bar = TTY::ProgressBar.new("Preparing to kick-off: [:bar]", bar_format: :box, total: 35)
-starwars_font = TTY::Font.new(:starwars)
 phase_bar = TTY::ProgressBar.new("Loading next phase of play: [:bar]", bar_format: :box, total: 35)
 results_bar = TTY::ProgressBar.new("Processing Result: [:bar]", bar_format: :box, total: 35)
+sw_font = TTY::Font.new(:straight)
 
+if ARGV.length > 0
+    first_name = ARGV[0]
+    second_name = ARGV[1]
+    player_name = first_name + " " + second_name
+else
+    player_name = "Football Fan"
+end
+ARGV.clear
 
 #Below are all methods used to run the game.
 
@@ -448,21 +456,15 @@ end
 
 system "clear"
 #This is the main greeting
-puts ascii.asciify("Welcome to Football Shootout").colorize(:green)
-sleep(0.5)
-puts ascii_slant.asciify("the greatest 5-a-side sim").colorize(:red)
-sleep(0.5)
-print "Please enter your name: "
-player_name = gets.chomp
-while player_name == ""
-    print "You didn't enter a name. Please try again: "
-    player_name = gets.chomp
-end
-# This is the case for the main options menu
+puts sw_font.write("Welcome #{player_name}...")
+sleep(1)
+puts sw_font.write("to")
+puts sw_font.write("Football Shootout").colorize(:green)
+sleep(1.5)
+puts sw_font.write("the Greatest 5-a-side Sim").colorize(:red)
+sleep(1.5)
 option =""
 while option != "4"
-    # puts "Thank you #{player_name} for choosing Football Shootout"
-    # sleep(0.5)
     puts "Select an option below to begin your journey to becoming a 5-a-side master:"
     option = main_menu
     case option
@@ -490,7 +492,7 @@ while option != "4"
             system "clear"
             main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,ascii_slant,phase_bar,results_bar)
         when "4"
-            puts "Are you sure you want to "
+            next
         else
             puts "Invalid option".colorize(:red)
             sleep(1)
