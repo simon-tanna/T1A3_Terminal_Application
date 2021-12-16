@@ -3,6 +3,7 @@ require_relative './seed.rb'
 require_relative './classes/teams.rb'
 require_relative './classes/game.rb'
 require_relative './classes/players.rb'
+# These are the Ruby Gems required by the app
 require 'tty-prompt'
 require 'colorize'
 require 'artii'
@@ -10,7 +11,8 @@ require 'tty-progressbar'
 require 'tty-font'
 require 'faker'
 
-game = seed
+# These are the variables required by the game
+game = seed # This variable is from the seed.rb file
 prompt = TTY::Prompt.new
 ascii = Artii::Base.new
 ascii_slant = Artii::Base.new :font => 'slant'
@@ -21,6 +23,7 @@ phase_bar = TTY::ProgressBar.new("Loading next phase of play: [:bar]", bar_forma
 results_bar = TTY::ProgressBar.new("Processing Result: [:bar]", bar_format: :box, total: 35)
 sw_font = TTY::Font.new(:straight)
 
+# The is the statement invoking the argument inputted by the user
 if ARGV.length > 0
     first_name = ARGV[0]
     second_name = ARGV[1]
@@ -30,70 +33,83 @@ else
 end
 ARGV.clear
 
-#Below are all methods used to run the game.
+# Below are all methods used to run the game.
+# This is the method used by the team info menu selection to populate the bot team information list
 def team_select_info(prompt,game)
     team = prompt.select("Choose a team to view the line-up...(use ↑/↓ arrows on your keyboard)", game.print_teams)
     return team
 end
 
-def team_select_user(prompt,game)
-    user_team = prompt.select("Choose your team...(use ↑/↓ arrows on your keyboard)", game.print_teams)
-    return user_team
-end
+# def team_select_user(prompt,game)
+#     user_team = prompt.select("Choose your team...(use ↑/↓ arrows on your keyboard)", game.print_teams)
+#     return user_team
+# end
 
+# This is the method used by the main game to select the bot team
 def team_select_bot(prompt,game)
     bot_team = prompt.select("Choose your opponent...(use ↑/↓ arrows on your keyboard)", game.print_teams)
     return bot_team
 end
 
+# This is the method used to prompt the user for a heads or tails answer in the coin toss feature
 def coin_toss(prompt,game)
     coin_options = ["heads", "tails"]
     toss = prompt.select("Choose heads or tails to decide who kicks off!", coin_options)
     return toss
 end
 
+# The next 6 methods are used by the game to prompt the user for a gameplay decision, returning a true of false 
+# variable to be matched against a randomly assigned variable in the user team
 def team_attack_1(prompt,game,user_team)
     attack_options = ["pass", "shoot"]
-    attack = prompt.select("#{user_team} have the ball on the right hand side of the pitch. You have a team-mate in a good position outside the box but the opposing goalkeeper is off his line. Do you: ", attack_options)
+    attack = prompt.select("#{user_team} have the ball on the right hand side of the pitch. 
+             You have a team-mate in a good position outside the box but the opposing goalkeeper is off his line. Do you: ", attack_options)
     return attack
 end
 
 def team_defend_1(prompt,game,user_team,bot_team)
     defend_options = ["slide tackle", "block tackle"]
-    defend = prompt.select("#{bot_team} are looking dangerous and are taking the ball into the final third of the pitch. The winger is looking to go past you. Do you: ", defend_options)
+    defend = prompt.select("#{bot_team} are looking dangerous and are taking the ball into the final third of the pitch. 
+             The winger is looking to go past you. Do you: ", defend_options)
     return defend
 end
 
 def team_attack_2(prompt,game,user_team,bot_team)
     attack_options = ["dribble then shoot", "shoot from range"]
-    attack = prompt.select("#{user_team} have opened up space in the middle of the pitch. There is gaping hole in their defence with no team mates near you. Do you: ", attack_options)
+    attack = prompt.select("#{user_team} have opened up space in the middle of the pitch. 
+             There is gaping hole in their defence with no team mates near you. Do you: ", attack_options)
     return attack
 end
 
 def team_defend_2(prompt,game,user_team,bot_team)
     defend_options = ["slide tackle", "block tackle"]
-    defend = prompt.select("#{bot_team} have broken away and you are now the only player between their striker and the goal! Do you: ", defend_options)
+    defend = prompt.select("#{bot_team} have broken away and you are now the only player between
+             their striker and the goal! Do you: ", defend_options)
     return defend
 end
 
 def team_attack_3(prompt,game,user_team,bot_team)
     attack_options = ["pass", "shoot"]
-    attack = prompt.select("#{user_team} have the ball on the right hand side of the pitch. You have a team-mate in a good position outside the box but the opposing goalkeeper is off his line. Do you: ", attack_options)
+    attack = prompt.select("#{user_team} have the ball on the right hand side of the pitch. You have a team-mate in 
+             a good position outside the box but the opposing goalkeeper is off his line. Do you: ", attack_options)
     return attack
 end
 
 def team_defend_3(prompt,game,user_team,bot_team)
     defend_options = ["slide tackle", "block tackle"]
-    defend = prompt.select("#{bot_team} are storming into your half of the field. Their striker is about to shoot from distance. Do you: ", defend_options)
+    defend = prompt.select("#{bot_team} are storming into your half of the field. Their striker is about to 
+             shoot from distance. Do you: ", defend_options)
     return defend
 end
 
+# This is the method invoked if extra-time is required
 def team_extra_time(prompt,game,user_team,bot_team)
     attack_options = ["shoot left", "shoot right"]
     attack = prompt.select("You are one-on-one with the opposition goalkeeper. Do you: ", attack_options)
     return attack
 end
 
+# This is the method used to create a playable user team
 def create_team(prompt,game,player_name,ascii_slant)
     puts ascii_slant.asciify("Time to Create Your Team of Legends!").colorize(:red)
     team_name = ""
@@ -129,10 +145,11 @@ def create_team(prompt,game,player_name,ascii_slant)
     team_new_players << prompt.select("Choose your iron-gloved goalkeeper: ", choice_3)
     team_new_players << prompt.select("Choose your midfield general: ", choice_4)
     team_new_players << prompt.select("Choose your rampaging full-back: ", choice_5)
-    team_user = Teams.new(team_name, team_new_players, 0, captain, team_new_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
+    team_user = Teams.new(team_name, team_new_players, 0, captain, team_new_toss, team_attack_1, 
+                team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
 end
 
-#This is the main menu of game options
+# This is the main menu of game options
 def main_menu
     puts "1. View Rules".colorize(:green)
     puts "2. View Team Details".colorize(:green)
@@ -152,7 +169,7 @@ def rules
     system "clear"
 end
 
-#this is the menu that lists the available teams and players
+# This is the menu that lists the available teams and players
 def info_menu(prompt,game,ascii)
     to_info = "y"
     while to_info == "y"
@@ -160,6 +177,7 @@ def info_menu(prompt,game,ascii)
         puts ascii.asciify("Team Information")
         team = team_select_info(prompt,game)
         puts team.all_team_info
+        # This is the error handling for the team info menu
         begin
         puts "Would you like to view another team? (press 'y' then enter to view another team. press 'n' then enter to return to the main menu"
         to_info = gets.chomp
@@ -183,23 +201,28 @@ def info_menu(prompt,game,ascii)
 end
 
 # This is the method if the user selects option 3 in the main menu
+# It is the code that runs the main game from start to finish
 def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,ascii_slant,phase_bar,results_bar)
     25.times do
         sleep(0.05)
         coin_bar.advance
     end
+    # This if statement is determines the order of play based upon which team won the toss
     if toss == user_team.toss
         puts ascii.asciify("You have won the toss!").colorize(:green)
+        # This is the progress bar informing the user that the game is about to begin
         35.times do
             sleep(0.03)
             kickoff_bar.advance
         end
         system "clear"
+        # Here the game kicks off
         puts ascii_slant.asciify("PEEP!!!").colorize(:blue)
         sleep(0.4)
         puts "The referee blows the whistle to start the game. You are keeping posession of the ball well!".colorize(:green)
         sleep(2)
         system "clear"
+        # This is the first attacking phase of play if the toss was won
         attack_choice_1 = team_attack_1(prompt,game,user_team)
         if attack_choice_1 == user_team.attack_1
             user_team.score += 1
@@ -209,6 +232,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         else
             puts "You have given away position to the opposition...".colorize(:red)
         end
+        # This is the progress bar informing the user that the next phase of play is about to begin
         35.times do
             sleep(0.04)
             phase_bar.advance
@@ -217,6 +241,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         system "clear"
         puts "Prepare to defend!".colorize(:red)
         sleep(2)
+        # This is the first defensive phase of play if the toss was won
         defend_choice_1 = team_defend_1(prompt,game,user_team,bot_team)
         if defend_choice_1 != user_team.defend_1
             bot_team.score += 1
@@ -226,6 +251,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         else
             puts "You have executed a perfectly timed tackle and regained posession. Well done!".colorize(:green)
         end
+        # This is the progress bar informing the user that the next phase of play is about to begin
         35.times do
             sleep(0.04)
             phase_bar.advance
@@ -234,6 +260,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         system "clear"
         puts "Your team is now again on the attack!".colorize(:green)
         sleep(2)
+        # This is the second attacking phase of play if the toss was won
         attack_choice_2 = team_attack_2(prompt,game,user_team,bot_team)
         if attack_choice_2 == user_team.attack_2
             user_team.score += 1
@@ -243,6 +270,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         else
             puts "Your attacking raid has come to nothing and now #{bot_team} have posession...".colorize(:red)
         end
+        # This is the progress bar informing the user that the next phase of play is about to begin
         35.times do
             sleep(0.04)
             phase_bar.advance
@@ -251,6 +279,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         system "clear"
         puts "Your defence is under-pressure!".colorize(:red)
         sleep(2)
+        # This is the second defensive phase of play if the toss was won
         defend_choice_2 = team_defend_2(prompt,game,user_team,bot_team)
         if defend_choice_2 != user_team.defend_2
             bot_team.score += 1
@@ -260,6 +289,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         else
             puts "You have executed a perfectly timed tackle and regained posession. Well done!".colorize(:green)
         end
+        # This is the progress bar informing the user that the next phase of play is about to begin
         35.times do
             sleep(0.04)
             phase_bar.advance
@@ -268,6 +298,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         system "clear"
         puts "Your team is has time for one final attack!".colorize(:green)
         sleep(2)
+        # This is the third and final attacking phase of play if the toss was won
         attack_choice_3 = team_attack_3(prompt,game,user_team,bot_team)
         if attack_choice_3 == user_team.attack_3
             user_team.score += 1
@@ -275,8 +306,10 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         else
             puts "Your attacking raid has come to nothing and the referee has blown for full time."
         end
+    # This is invoked when the user team loses the coin toss
     else
         puts ascii.asciify("You lost the toss. #{bot_team} to kick off").colorize(:red)
+        # This is the progress bar informing the user that the game is about to kick off
         35.times do
             sleep(0.03)
             kickoff_bar.advance
@@ -288,6 +321,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         sleep(2)
         system "clear"
         puts "Prepare to defend!".colorize(:red)
+        # This is the first defensive phase of play if the toss was lost
         defend_choice_1 = team_defend_1(prompt,game,user_team,bot_team)
         if defend_choice_1 != user_team.defend_1
             bot_team.score += 1
@@ -297,6 +331,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         else                
             puts "You have executed a perfectly timed tackle and regained posession. Well done!".colorize(:green)
         end
+        # This is the progress bar informing the user that the next phase of play is about to begin
         35.times do
                 sleep(0.04)
                 phase_bar.advance
@@ -305,6 +340,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         system "clear"
         puts "You are keeping posession in the midfield. Each pass finds a team=mate perfectly".colorize(:green)
         sleep(2)
+        # This is the first attacking phase of play if the toss was lost
         attack_choice_1 = team_attack_1(prompt,game,user_team)
         if attack_choice_1 == user_team.attack_1
             user_team.score += 1
@@ -314,6 +350,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         else
             puts "You have given away position to the opposition...".colorize(:red)
         end
+        # This is the progress bar informing the user that the next phase of play is about to begin
         35.times do
             sleep(0.04)
             phase_bar.advance
@@ -322,6 +359,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         system "clear"
         puts "Your defence is under-pressure!".colorize(:red)
         sleep(2)
+        # This is the second defensive phase of play if the toss was lost
         defend_choice_2 = team_defend_2(prompt,game,user_team,bot_team)
         if defend_choice_2 != user_team.defend_2
             bot_team.score += 1
@@ -331,6 +369,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         else
             puts "You have executed a perfectly timed tackle and regained posession. Well done!".colorize(:green)
         end
+        # This is the progress bar informing the user that the next phase of play is about to begin
         35.times do
             sleep(0.04)
             phase_bar.advance
@@ -339,6 +378,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         system "clear"
             puts "Your team is now again on the attack!".colorize(:green)
         sleep(2)
+        # This is the second attacking phase of play if the toss was lost
         attack_choice_2 = team_attack_2(prompt,game,user_team,bot_team)
         if attack_choice_2 == user_team.attack_2
             user_team.score += 1
@@ -355,6 +395,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         phase_bar.reset
         system "clear"
         puts "Your opponent is launching one last counter-attack!".colorize(:red)
+        # This is the third and final defensive phase of play if the toss was lost
         defend_choice_3 = team_defend_3(prompt,game,user_team,bot_team)
         if defend_choice_3 != user_team.defend_3
             bot_team.score += 1
@@ -365,13 +406,19 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
             sleep(2)
         end
     end
+
     system "clear"
+
+    # This is the progress bar informing the user that the result is being calculated
     35.times do
         sleep(0.05)
         results_bar.advance
     end
+
     system "clear"
-    if user_team.score == bot_team.score
+
+    # This is the loop that returns a winner or begins extra time
+    while user_team.score == bot_team.score
         puts "The scores are as follows..."
         sleep(1)
         puts "#{user_team}: #{user_team.score}"
@@ -379,21 +426,21 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         puts "#{bot_team}: #{bot_team.score}"
         sleep(1.5)
         puts "The scores are level..."
-        sleep(0.5)
+        sleep(1.5)
         system "clear"
         puts ascii_slant.asciify("Extra-Time!!!")
         sleep(1.5)
         puts "The referee decides that #{user_team} have been the better behaved team and awards you the kick-off!".colorize(:blue)
-        sleep(1)
+        sleep(1.5)
         puts "PEEP! The referee's whistle blows and your team is immediately on the attack".colorize(:green)
         extra_time_choice = team_extra_time(prompt,game,user_team,bot_team)
+        # This is returns an extra-time result from the user input
         if extra_time_choice == user_team.extra
             user_team.score += 1
             puts ascii.asciify("GOAL!!!").colorize(:green)
             sleep(1.5)
-            puts ascii.asciify("#{user_team} WINS").colorize(:green)
-            sleep(2)
-            puts ascii.asciify("Congratulations")
+            puts ascii.asciify("#{user_team} HAVE SCORED").colorize(:green)
+            sleep(1)
         else
             system "clear"
             bot_team.score += 1
@@ -405,11 +452,13 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
             sleep(1)
             puts "He spots your goalkeeper off his line and takes a long-range snapshot..."
             sleep(2)
-            puts ascii_slant.asciify("GOAL! #{bot_team} WINS").colorize(:red)
+            puts ascii_slant.asciify("GOAL! #{bot_team} Have scored...").colorize(:red)
             sleep(1)
-            puts "Better luck next time"
         end
-    elsif user_team.score < bot_team.score
+    end
+
+    # This returns the result if the bot team wins
+    if user_team.score < bot_team.score
             puts "#{user_team}: #{user_team.score}"
             sleep(1)
             puts "#{bot_team}: #{bot_team.score}"
@@ -417,6 +466,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
             puts ascii_slant.asciify("#{bot_team} are the winners!").colorize(:red)
             sleep(2)
             puts "Better luck next time"
+    # This returns the result if the user team wins
     else
         puts "#{user_team}: #{user_team.score}"
         sleep(1)
@@ -430,13 +480,13 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
     system "clear"
     user_team.score = 0
     bot_team.score = 0
-    print "Press any key to return to the main menu: "
+    print "Press return to the main menu: "
     gets
 end
 
 
 system "clear"
-#This is the main greeting
+# This is the main greeting on the splash page
 puts sw_font.write("Welcome #{player_name}...")
 sleep(1)
 puts sw_font.write("to")
@@ -444,6 +494,9 @@ puts sw_font.write("Football Shootout").colorize(:green)
 sleep(1.5)
 puts sw_font.write("the Greatest 5-a-side Sim").colorize(:red)
 sleep(1.5)
+
+# This is the while loop for the main menu
+# A case with options is contained within
 option =""
 while option != "4"
     puts "Select an option below to begin your journey to becoming a 5-a-side master:"
