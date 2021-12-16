@@ -19,6 +19,8 @@ bar = TTY::ProgressBar.new("reloading options menu [:bar]", bar_format: :star, t
 coin_bar = TTY::ProgressBar.new("Coin toss results processing [:bar]", bar_format: :box, total: 25)
 kickoff_bar = TTY::ProgressBar.new("Preparing to kick-off: [:bar]", bar_format: :box, total: 35)
 starwars_font = TTY::Font.new(:starwars)
+phase_bar = TTY::ProgressBar.new("Loading next phase of play: [:bar]", bar_format: :box, total: 35)
+results_bar = TTY::ProgressBar.new("Processing Result: [:bar]", bar_format: :box, total: 35)
 
 
 #Below are all methods used to run the game.
@@ -107,11 +109,11 @@ def create_team(prompt,game,player_name,ascii_slant)
     puts "What would you like to call your team?"
     team_name = gets.chomp
     puts "Select your legends"
-    team_new_players << prompt.select("Choose your destiny?", choice_1)
-    team_new_players << prompt.select("Choose your destiny?", choice_2)
-    team_new_players << prompt.select("Choose your destiny?", choice_3)
-    team_new_players << prompt.select("Choose your destiny?", choice_4)
-    team_new_players << prompt.select("Choose your destiny?", choice_5)
+    team_new_players << prompt.select("Choose your star striker: ", choice_1)
+    team_new_players << prompt.select("Choose your defensive rock: ", choice_2)
+    team_new_players << prompt.select("Choose your iron-gloved goalkeeper: ", choice_3)
+    team_new_players << prompt.select("Choose your midfield general: ", choice_4)
+    team_new_players << prompt.select("Choose your rampaging full-back: ", choice_5)
     team_user = Teams.new(team_name, team_new_players, 0, captain, team_new_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
 end
 
@@ -181,7 +183,7 @@ end
 
 
 # This is the method if the user selects option 3 in the main menu
-def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,ascii_slant)
+def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,ascii_slant,phase_bar,results_bar)
     25.times do
         sleep(0.05)
         coin_bar.advance
@@ -193,145 +195,243 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
             kickoff_bar.advance
         end
         system "clear"
-        15.times {puts ascii_slant.asciify("PEEP!!!").colorize(:color => :blue, :background => :white)
-            sleep(0.1)
-            system "clear"
-            puts ascii_slant.asciify("PEEP!!!").colorize(:color => :white, :background => :blue)
-            sleep(0.1)
-            system "clear"}
-            puts "The referee blows the whistle to start the game. You are keeping posession of the ball well!"
+        puts ascii_slant.asciify("PEEP!!!").colorize(:blue)
+        sleep(0.4)
+        puts "The referee blows the whistle to start the game. You are keeping posession of the ball well!".colorize(:green)
+        sleep(2)
+        system "clear"
         attack_choice_1 = team_attack_1(prompt,game,user_team)
         if attack_choice_1 == user_team.attack_1
             user_team.score += 1
-            puts "GOAL"
+            puts ascii.asciify("GOAL!!!").colorize(:green)
+            sleep(1)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
         else
-            puts "You have given away position to the opposition..."
+            puts "You have given away position to the opposition...".colorize(:red)
         end
-        puts "Prepare to defend!"
+        35.times do
+            sleep(0.04)
+            phase_bar.advance
+        end
+        phase_bar.reset
+        system "clear"
+        puts "Prepare to defend!".colorize(:red)
+        sleep(2)
         defend_choice_1 = team_defend_1(prompt,game,user_team,bot_team)
         if defend_choice_1 != user_team.defend_1
             bot_team.score += 1
-            puts "GOAL for #{bot_team}"
+            puts ascii_slant.asciify("GOAL for #{bot_team}").colorize(:red)
+            sleep(1)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
         else
-            puts "You have executed a perfectly timed tackle and regained posession. Well done!"
+            puts "You have executed a perfectly timed tackle and regained posession. Well done!".colorize(:green)
         end
-        puts "Your team is now again on the attack!"
+        35.times do
+            sleep(0.04)
+            phase_bar.advance
+        end
+        phase_bar.reset
+        system "clear"
+        puts "Your team is now again on the attack!".colorize(:green)
+        sleep(2)
         attack_choice_2 = team_attack_2(prompt,game,user_team,bot_team)
         if attack_choice_2 == user_team.attack_2
             user_team.score += 1
-            puts "GOAL"
+            puts ascii.asciify("GOAL!!!").colorize(:green)
+            sleep(1)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
         else
-            puts "Your attacking raid has come to nothing and now #{bot_team} have posession..."
+            puts "Your attacking raid has come to nothing and now #{bot_team} have posession...".colorize(:red)
         end
-        puts "Your defence is under-pressure!"
+        35.times do
+            sleep(0.04)
+            phase_bar.advance
+        end
+        phase_bar.reset
+        system "clear"
+        puts "Your defence is under-pressure!".colorize(:red)
+        sleep(2)
         defend_choice_2 = team_defend_2(prompt,game,user_team,bot_team)
         if defend_choice_2 != user_team.defend_2
             bot_team.score += 1
-            puts "GOAL for #{bot_team}"
+            puts ascii.asciify("GOAL for #{bot_team}").colorize(:red)
+            sleep(1)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
         else
-            puts "You have executed a perfectly timed tackle and regained posession. Well done!"
+            puts "You have executed a perfectly timed tackle and regained posession. Well done!".colorize(:green)
         end
-        puts "Your team is has time for one final attack!"
+        35.times do
+            sleep(0.04)
+            phase_bar.advance
+        end
+        phase_bar.reset
+        system "clear"
+        puts "Your team is has time for one final attack!".colorize(:green)
+        sleep(2)
         attack_choice_3 = team_attack_3(prompt,game,user_team,bot_team)
         if attack_choice_3 == user_team.attack_3
             user_team.score += 1
-            puts "GOAL"
+            puts ascii.asciify("GOAL").colorize(:green)
             # puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
         else
             puts "Your attacking raid has come to nothing and the referee has blown for full time."
         end
     else
-        puts "You lost the toss. #{bot_team} to kick off" 
-        15.times {puts ascii_slant.asciify("PEEP!!!").colorize(:color => :blue, :background => :white)
-            sleep(0.1)
-            system "clear"
-            puts ascii_slant.asciify("PEEP!!!").colorize(:color => :white, :background => :blue)
-            sleep(0.1)
-            system "clear"}
-        puts "The referee blows the whistle to start the game. Your opponents are keeping posession of the ball well!"
-        puts "Prepare to defend!"
+        puts ascii.asciify("You lost the toss. #{bot_team} to kick off").colorize(:red)
+        35.times do
+            sleep(0.03)
+            kickoff_bar.advance
+        end
+        system "clear"
+        puts ascii_slant.asciify("PEEP!!!").colorize(:blue)
+        sleep(0.4)
+        puts "The referee blows the whistle to start the game. Your opponents are keeping posession of the ball well!".colorize(:red)
+        sleep(2)
+        system "clear"
+        puts "Prepare to defend!".colorize(:red)
             defend_choice_1 = team_defend_1(prompt,game,user_team,bot_team)
             if defend_choice_1 != user_team.defend_1
                 bot_team.score += 1
-                puts "GOAL for #{bot_team}"
+                puts ascii_slant.asciify("GOAL for #{bot_team}").colorize(:red)
+                sleep(1)
                 puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
             else
-                puts "You have executed a perfectly timed tackle and regained posession. Well done!"
+                puts "You have executed a perfectly timed tackle and regained posession. Well done!".colorize(:green)
             end
-            puts "You are keeping posession in the midfield. Each pass finds a team=mate perfectly"
+            35.times do
+                sleep(0.04)
+                phase_bar.advance
+            end
+            phase_bar.reset
+            system "clear"
+            puts "You are keeping posession in the midfield. Each pass finds a team=mate perfectly".colorize(:green)
+            sleep(2)
             attack_choice_1 = team_attack_1(prompt,game,user_team)
             if attack_choice_1 == user_team.attack_1
                 user_team.score += 1
-                puts "GOAL"
+                puts ascii.asciify("GOAL").colorize(:green)
+                sleep(1)
                 puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
             else
-                puts "You have given away position to the opposition..."
+                puts "You have given away position to the opposition...".colorize(:red)
             end
-            puts "Your defence is under-pressure!"
+            35.times do
+                sleep(0.04)
+                phase_bar.advance
+            end
+            phase_bar.reset
+            system "clear"
+            puts "Your defence is under-pressure!".colorize(:red)
+            sleep(2)
             defend_choice_2 = team_defend_2(prompt,game,user_team,bot_team)
             if defend_choice_2 != user_team.defend_2
                 bot_team.score += 1
-                puts "GOAL for #{bot_team}"
+                puts ascii_slant.asciify("GOAL for #{bot_team}").colorize(:red)
+                sleep(1)
                 puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
             else
-                puts "You have executed a perfectly timed tackle and regained posession. Well done!"
+                puts "You have executed a perfectly timed tackle and regained posession. Well done!".colorize(:green)
             end
-            puts "Your team is now again on the attack!"
+            35.times do
+                sleep(0.04)
+                phase_bar.advance
+            end
+            phase_bar.reset
+            system "clear"
+            puts "Your team is now again on the attack!".colorize(:green)
+            sleep(2)
             attack_choice_2 = team_attack_2(prompt,game,user_team,bot_team)
             if attack_choice_2 == user_team.attack_2
                 user_team.score += 1
-                puts "GOAL"
+                puts ascii.asciify("GOAL").colorize(:green)
+                sleep(1)
                 puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
             else
-                puts "Your attacking raid has come to nothing and now #{bot_team} have posession..."
+                puts "Your attacking raid has come to nothing and now #{bot_team} have posession...".colorize(:red)
             end
-            puts "Your opponent is launching one last counter-attack!"
+            35.times do
+                sleep(0.04)
+                phase_bar.advance
+            end
+            phase_bar.reset
+            system "clear"
+            puts "Your opponent is launching one last counter-attack!".colorize(:red)
             defend_choice_3 = team_defend_3(prompt,game,user_team,bot_team)
             if defend_choice_3 != user_team.defend_3
                 bot_team.score += 1
-                puts "GOAL for #{bot_team}"
-                puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
+                puts ascii_slant.asciify("GOAL for #{bot_team}").colorize(:red)
+                sleep(2)
+                # puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
             else
-                puts "You have executed a perfectly timed tackle and regained posession. Well done!"
+                puts "You have executed a perfectly timed tackle and regained posession. Well done!".colorize(:green)
+                sleep(2)
             end
     end
+    system "clear"
+    35.times do
+        sleep(0.05)
+        results_bar.advance
+    end
+    system "clear"
     if user_team.score == bot_team.score
         puts "The scores are as follows..."
+        sleep(1)
         puts "#{user_team}: #{user_team.score}"
+        sleep(1.5)
         puts "#{bot_team}: #{bot_team.score}"
-        puts "The scores are level... Extra-Time"
-        puts "The referee decides that #{user_team} have been the better behaved team and awards you the kick-off!"
-        puts "PEEP! The referee's whistle blows and your team is immediately on the attack"
+        sleep(1.5)
+        puts "The scores are level..."
+        sleep(0.5)
+        system "clear"
+        puts ascii_slant.asciify("Extra-Time!!!")
+        sleep(1.5)
+        puts "The referee decides that #{user_team} have been the better behaved team and awards you the kick-off!".colorize(:blue)
+        sleep(1)
+        puts "PEEP! The referee's whistle blows and your team is immediately on the attack".colorize(:green)
         extra_time_choice = team_extra_time(prompt,game,user_team,bot_team)
         if extra_time_choice == user_team.extra
             user_team.score += 1
-            puts "GOAL!!!"
-            puts "#{user_team} WINS"
-            puts "Congratulations"
+            puts ascii.asciify("GOAL!!!").colorize(:green)
+            sleep(1.5)
+            puts ascii.asciify("#{user_team} WINS").colorize(:green)
+            sleep(2)
+            puts ascii.asciify("Congratulations")
         else
+            system "clear"
             bot_team.score += 1
-            puts "The goalkeeper saves!"
+            puts "The goalkeeper saves!".colorize(:red)
+            sleep(1)
             puts "He spots his striker unmarked upfield and boots the ball towards him."
+            sleep(1)
             puts "The opposition striker controls the ball...."
+            sleep(1)
             puts "He spots your goalkeeper off his line and takes a long-range snapshot..."
-            puts "GOAL! #{bot_team} WINS"
+            sleep(2)
+            puts ascii_slant.asciify("GOAL! #{bot_team} WINS").colorize(:red)
+            sleep(1)
             puts "Better luck next time"
         end
     elsif user_team.score < bot_team.score
             puts "#{user_team}: #{user_team.score}"
+            sleep(1)
             puts "#{bot_team}: #{bot_team.score}"
-            puts "#{bot_team} are the winners!"
+            sleep(1)
+            puts ascii_slant.asciify("#{bot_team} are the winners!").colorize(:red)
+            sleep(2)
             puts "Better luck next time"
     else
         puts "#{user_team}: #{user_team.score}"
+        sleep(1)
         puts "#{bot_team}: #{bot_team.score}"
-        puts "#{user_team} are the winners!"
+        sleep(1)
+        puts ascii_slant.asciify("#{user_team} are the winners!").colorize(:green)
+        sleep(2)
         puts "Congratulations"
     end
+    sleep(2)
+    system "clear"
+    user_team.score = 0
+    bot_team.score = 0
     print "Press any key to return to the main menu: "
     gets
 end
@@ -352,8 +452,8 @@ end
 # This is the case for the main options menu
 option =""
 while option != "4"
-    puts "Thank you #{player_name} for choosing Football Shootout"
-    sleep(0.5)
+    # puts "Thank you #{player_name} for choosing Football Shootout"
+    # sleep(0.5)
     puts "Select an option below to begin your journey to becoming a 5-a-side master:"
     option = main_menu
     case option
@@ -379,7 +479,7 @@ while option != "4"
             system "clear"
             toss = coin_toss(prompt,game)
             system "clear"
-            main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,ascii_slant)
+            main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,ascii_slant,phase_bar,results_bar)
         when "4"
             puts "Are you sure you want to "
         else
