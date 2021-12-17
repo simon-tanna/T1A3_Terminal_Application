@@ -1,6 +1,6 @@
 # Football Shootout
 
-### A five-a-side football simulation
+## A five-a-side football simulation
 
 **Football Shootout** is a fun and compact football simulation game that allows the user to have their shot at glory.
 
@@ -31,18 +31,22 @@ Execute the command which will install any required Ruby gem files and then ente
 ***
 
 * [1. Software Development Plan](#1-software-development-plan)
-    * [1.1 Overview](#11-overview)
-    * [1.2 Why a Football Sim?](#12-why-a-football-sim)
-    * [1.3 Target Audience](#13-target-audience)
-    * [1.4 App Usage](#14-app-usage)
+  * [1.1 Overview](#11-overview)
+  * [1.2 Why a Football Sim?](#12-why-a-football-sim)
+  * [1.3 Target Audience](#13-target-audience)
+  * [1.4 App Usage](#14-app-usage)
 * [2. Features](#2-features)
-    * [2.1 The Coin Toss](#21-the-coin-toss)
-    * [2.2 The Team Information Menu](#22-the-team-information-menu)
-    * [2.3 Team Creation](#23-team-creation)
-    * [2.4 Extra Time](#24-extra-time)
+  * [2.1 The Coin Toss](#21-the-coin-toss)
+  * [2.2 The Team Information Menu](#22-the-team-information-menu)
+  * [2.3 Team Creation](#23-team-creation)
+  * [2.4 Extra Time](#24-extra-time)
 * [3. User Interaction](#3-user-interaction)
-    * [3.1 Command Line Arguments](#31-command-line-arguments)
-
+  * [3.1 Command Line Arguments](#31-command-line-arguments)
+  * [3.2 Main Menu](#32-main-menu)
+    * [3.2.1 Rules](#321-rules)
+    * [3.2.2 View Team Details](#322-view-team-details)
+    * [3.2.3 Main Game](#323-main-game)
+    * [3.2.4 Exit Game](#324-exit-game)
 
 
 ## The first step that I am taking is making a Github repo
@@ -62,7 +66,7 @@ This application is a simple yet fun game designed to simulate a real match expe
 
 The user is able to view the rules of the game and view the team details via different menu options before entering the match menu.
 
-They are able to select a team that they will control and select the team controlled by the application before participating in a coin toss to determine who will kick-off. There are 5 phases of play in the match where the user can choose a team action which results in a goal or a turn-over of posession. 
+They are able to select a team that they will control and select the team controlled by the application before participating in a coin toss to determine who will kick-off. There are 5 phases of play in the match where the user can choose a team action which results in a goal or a turn-over of posession.
 
 If the scores are even after the 5 phases of play, the match enters extra-time whereby the user has one last chance to secure victory! This match experience can be repeated as many times as the user wants.
 
@@ -179,6 +183,7 @@ Upon the start of the main game, the user is prompted to create a team of legend
     end
 
 Upon the selection of the players, the team information is printed for the user before continuing to the select opponent screen.
+
 ### 2.4 Extra Time
 
 The feature of Extra Time when the team scores are tied is important to the operation of the game as it returns an overall winner and therefore resolves the problem of who is the best 5-a-side football team!
@@ -245,3 +250,86 @@ The user is asked in the instructions to enter their first and last name as argu
 ![Application launch screen with player name passed in as argument](./documents/readme_resources/welcome_screen.jpg)
 
 ![Team selection confirmation screen with user name passed as argument](./documents/readme_resources/team_user_screen.jpg)
+
+If the user chooses not to pass their name into the command line, a default "Football Fan" name will be displayed instead.
+
+### 3.2 Main Menu
+
+The main menu consists of the following four options
+
+![Main menu options list](./documents/readme_resources/main_menu.jpg)
+
+### 3.2.1 Rules
+
+Within this menu option the user shall view a description of how the game will run. It contains a description of team creation, coin toss, game phases and extra-time.
+
+### 3.2.2 View Team Details
+
+The View Team Details option provides the user with the opportunity to view the player roster for each of the bot teams and will therefore be able to make an informed choice when choosing an opponent.
+
+Upon viewing the selected team, the user is asked if they would like to view another team and presented with a 'y' or 'n' (return to main menu) option. Error handling has been written into the code to ensure integrity of flow within the app. If the user does not enter a response or a characher other than 'y' or 'n', the following error will be returned.
+
+    You didn't enter a valid option! Please select 'y' or 'n' before pressing enter
+
+### 3.2.3 Main Game
+
+When selecting the '3' the user is immediately asked to enter a name for their team. If no response is entered, the following error displays until a name is entered.
+
+    You didn't enter a team name. Please try again!
+    What would you like to call your team?
+
+The user is then prompted to select 5 legendary players to populate the team roster.
+
+![Player selection menu](./documents/readme_resources/player_select.jpg)
+
+Ruby gem tty-prompt was used to create all user interaction options within the main game as it provides an easy to use and error-free user experience.
+
+Once the team of legends has been created, the user will be prompted to select an opponent from the same list of bot teams viewable within the 'View Team Details" menu option and then proceed to the coin toss. A Ruby gem tty-progressbar animation is used to indicate a coin toss in progress, thereby enhancing the anticipation of the user pending the result.
+
+![Coin toss progress bar](./documents/readme_resources/coin_toss.jpg)
+
+The football game starts after the coin toss element of the game has been completed with the team who won the toss presented with the first attacking phase of the game. Winning the right to kick-off gives that team a better opportunity of out-scoring the opposition as it means they will have three chances to score a goal whereas the opponent will only get two chances.
+
+In an attacking phase, the user will be presented with an option like the one below.
+
+    Football Fan's GOATS have the ball on the right hand side of the pitch.
+    You have a team-mate in a good position outside the box but the opposing goalkeeper is off his line. Do you:  (Press ↑/↓ arrow to move and Enter to select)
+        ‣ pass
+        shoot
+
+If the user team scores a goal, the following screen will displayed.
+
+![User team goal confirmation](./documents/readme_resources/team_goal.jpg)
+
+If the user team attacking selection results in no goal, the following message is displayed.
+
+![User team no goal confirmation](./documents/readme_resources/team_no_goal.jpg)
+
+In a defending phase, the user will be presented with an option like the one below.
+
+    Prepare to defend!
+    Gianluigi Buffon's Barons are looking dangerous and are taking the ball into the final third of the pitch.
+    The winger is looking to go past you. Do you:  (Press ↑/↓ arrow to move and Enter to select)
+        ‣ slide tackle
+        block tackle
+
+If the bot team scores, the following screen featuring the team scores and progress bar is displayed.
+
+![Bot team goal confirmation](./documents/readme_resources/bot_goal.jpg)
+
+If the user selection returns a successful result for the defence, the following message is displayed.
+
+![Bot team no goal confirmation](./documents/readme_resources/bot_no_goal.jpg)
+
+When the scores of the user and bot teams are equal after the 5 phases of play, extra time will be played and the user will have one chance to snatch victory for the team of legends. 
+
+![Extra time screen](./documents/readme_resources/extra_time.jpg)
+
+If the selected shooting option returns a true value, the player wins otherwise the opposition will win and the following screen is displayed.
+
+![Final Result](./documents/readme_resources/game_result.jpg)
+
+### 3.2.4 Exit Game
+
+This option will allow the user to immediately exit the game.
+

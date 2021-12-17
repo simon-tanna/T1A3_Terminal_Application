@@ -180,7 +180,8 @@ def info_menu(prompt,game,ascii)
         puts team.all_team_info
         # This is the error handling for the team info menu
         begin
-        puts "Would you like to view another team? (press 'y' then enter to view another team. press 'n' then enter to return to the main menu"
+        puts "Would you like to view another team?"
+        puts "(press 'y' then enter to view another team. press 'n' then enter to return to the main menu)"
         to_info = gets.chomp
             if to_info != "n" && to_info != "y"
                 raise StandardError
