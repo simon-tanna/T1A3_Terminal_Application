@@ -38,6 +38,8 @@ Execute the command which will install any required Ruby gem files and then ente
 * [2. Features](#2-features)
     * [2.1 The Coin Toss](#21-the-coin-toss)
     * [2.2 The Team Information Menu](#22-the-team-information-menu)
+    * [2.3 Team Creation](#23-team-creation)
+    * [2.4 Extra Time](#24-extra-time)
 
 
 ## The first step that I am taking is making a Github repo
@@ -122,7 +124,51 @@ Ruby gem TTY-prompt was also used to allow the user to select each team but in o
 
 Integrity of the user experience is ensured by using the error rescue and retry functions by eliminating the possibility of the wrong result being returned from a given user input.
 
-### Extra Time
+### 2.3 Team Creation
+Upon the start of the main game, the user is prompted to create a team of legends. They will name the team and then proceed to select 5 players. This team is built using the same variables featured in the Teams class. The truthy or falsey values of each attacking, defensive and extra time phase are generated within the create_team method (code below)
+
+    def create_team(prompt,game,player_name,ascii_slant)
+    puts ascii_slant.asciify("Create Your").colorize(:red)
+    puts ascii_slant.asciify("Team of Legends!").colorize(:red)
+    team_name = ""
+    captain = "#{player_name}"
+    team_new_players = []
+    team_new_toss = ["heads", "tails"].sample
+    team_attack_1 = ["pass", "shoot"].sample
+    team_attack_2 = ["dribble then shoot", "shoot from range"].sample
+    team_attack_3 = ["pass", "shoot"].sample
+    team_defend_1 = ["slide tackle", "block tackle"].sample
+    team_defend_2 = ["slide tackle", "block tackle"].sample
+    team_defend_3 = ["slide tackle", "block tackle"].sample
+    team_extra = ["shoot left", "shoot right"].sample
+    choice_1 = Player.new("Pele", 10), Player.new("Diego Maradona", 10)
+    choice_2 = Player.new("Bobby Moore", 6), Player.new("Franz Beckenbauer", 5)
+    choice_3 = Player.new("Lev Yashin", 1), Player.new("Dino Zoff", 1)
+    choice_4 = Player.new("Didier Deschamps", 7), Player.new("Paul Breitner", 8)
+    choice_5 = Player.new("Cafu", 2), Player.new("Marco Tardelli", 14)
+    begin
+    puts "What would you like to call your team?"
+    team_name = gets.chomp
+        if team_name == ""
+            raise ArgumentError
+        end
+        rescue ArgumentError
+            system "clear"
+            puts "You didn't enter a team name. Please try again!"
+            retry
+        end
+    puts "Select your legends"
+    team_new_players << prompt.select("Choose your star striker: ", choice_1)
+    team_new_players << prompt.select("Choose your defensive rock: ", choice_2)
+    team_new_players << prompt.select("Choose your iron-gloved goalkeeper: ", choice_3)
+    team_new_players << prompt.select("Choose your midfield general: ", choice_4)
+    team_new_players << prompt.select("Choose your rampaging full-back: ", choice_5)
+    team_user = Teams.new(team_name, team_new_players, 0, captain, team_new_toss, team_attack_1, 
+                team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
+    end
+
+Upon the selection of the players, the team information is printed for the user before continuing to the select opponent screen.
+### 2.4 Extra Time
 The feature of Extra Time when the team scores are tied is important to the operation of the game as it returns an overall winner and therefore resolves the problem of who is the best 5-a-side football team!
 It's operation is invoked if the user team score variable is equal to the bot team score variable. Because this game has been made with the aim of maximising user enjoyment, it is the user who has the opportunity to seal the win and glory for their team. They are presented with a choice: shoot left or shoot right? The true variable for this choice is generated randomly upon the game launch and is passed into the Team class (code below).
 
