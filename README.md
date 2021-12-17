@@ -34,7 +34,7 @@ Execute the command which will install any required Ruby gem files and then ente
     * [1.1 Overview](#11-overview)
     * [1.2 Why a Football Sim?](#12-why-a-football-sim)
     * [1.3 Target Audience](#13-target-audience)
-    * [1.4 App Flow](#14-app-flow)
+    * [1.4 App Usage](#14-app-usage)
 * [2. Features](#2-features)
     * [2.1 The Coin Toss](#21-the-coin-toss)
     * [2.2 The Team Information Menu](#22-the-team-information-menu)
@@ -67,8 +67,8 @@ This game has been created to solve the question of who is the best randomly gen
 ### 1.3 Target Audience
 Football Shootout is aimed to provide entertainment for anyone who needs to waste some time and is appropriate for all age groups. The user does not need to have any knowledge of the rules of football to play as the rules are available in the main menu.
 
-### 1.4 App Flow
-Insert info here
+### 1.4 App Usage
+The user will interact with elements of Football Shootout by means of text input (eg. entering the team name) and selection prompts created by the tty-prompt Ruby gem. Each selection will return a response based upon a randomly generated variable and ultimately decide who winse the game.
 
 ## 2. Features
 
@@ -177,38 +177,48 @@ It's operation is invoked if the user team score variable is equal to the bot te
     team_1 = Teams.new("Barons", team_1_players, 0, team_1_captain, team_1_toss, team_attack_1, team_attack_2, team_attack_3, team_defend_1, team_defend_2, team_defend_3, team_extra)
 
 If the user selects the true variable, they are crowned champions otherwise the bot team regains possession of the ball and scores at the other end of the pitch to win the game for the opposition.
-To build this feature, an if-elsif-else loop was used with another if-else loop nested within the parent if-elsif-else loop (code below).
+To build this feature, an if-else statement was used nested within the parent while loop (code below).
 
-    if user_team.score == bot_team.score
+    while user_team.score == bot_team.score
         puts "The scores are as follows..."
+        sleep(1.5)
         puts "#{user_team}: #{user_team.score}"
+        sleep(1.5)
         puts "#{bot_team}: #{bot_team.score}"
-        puts "The scores are level... Extra-Time"
-        puts "The referee decides that #{user_team} have been the better behaved team and awards you the kick-off!"
-        puts "PEEP! The referee's whistle blows and your team is immediately on the attack"
+        sleep(1.5)
+        puts "The scores are level..."
+        sleep(1.5)
+        system "clear"
+        puts ascii_slant.asciify("Extra-Time!!!")
+        sleep(2)
+        puts "The referee decides that #{user_team} have been the better behaved team and awards you the kick-off!".colorize(:blue)
+        sleep(1.5)
+        puts "PEEP! The referee's whistle blows and your team is immediately on the attack".colorize(:green)
         extra_time_choice = team_extra_time(prompt,game,user_team,bot_team)
+        # This is returns an extra-time result from the user input
         if extra_time_choice == user_team.extra
             user_team.score += 1
-            puts "GOAL!!!"
-            puts "#{user_team} WINS"
-            puts "Congratulations"
+            puts ascii.asciify("GOAL!!!").colorize(:green)
+            sleep(1.5)
+            puts ascii.asciify("#{user_team}").colorize(:green)
+            puts ascii.asciify("HAVE SCORED").colorize(:green)
+            sleep(2)
         else
+            system "clear"
             bot_team.score += 1
-            puts "The goalkeeper saves!"
+            puts "The goalkeeper saves!".colorize(:red)
+            sleep(1.5)
             puts "He spots his striker unmarked upfield and boots the ball towards him."
+            sleep(1)
             puts "The opposition striker controls the ball...."
+            sleep(1.5)
             puts "He spots your goalkeeper off his line and takes a long-range snapshot..."
-            puts "GOAL! #{bot_team} WINS"
-            puts "Better luck next time"
+            sleep(2)
+            puts ascii_slant.asciify("GOAL!").colorize(:red)
+            sleep(2)
+            puts ascii_slant.asciify("#{bot_team}").colorize(:red)
+            puts ascii_slant.asciify("Have scored...").colorize(:red)
+            sleep(2)
         end
-    elsif user_team.score < bot_team.score
-            puts "#{user_team}: #{user_team.score}"
-            puts "#{bot_team}: #{bot_team.score}"
-            puts "#{bot_team} are the winners!"
-            puts "Better luck next time"
-    else
-        puts "#{user_team}: #{user_team.score}"
-        puts "#{bot_team}: #{bot_team.score}"
-        puts "#{user_team} are the winners!"
-        puts "Congratulations"
     end
+

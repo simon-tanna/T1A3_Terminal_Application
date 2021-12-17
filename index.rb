@@ -124,11 +124,11 @@ def create_team(prompt,game,player_name,ascii_slant)
     team_defend_2 = ["slide tackle", "block tackle"].sample
     team_defend_3 = ["slide tackle", "block tackle"].sample
     team_extra = ["shoot left", "shoot right"].sample
-    choice_1 = Player.new("Pele", 10), Player.new("Diego Maradona", 10)
-    choice_2 = Player.new("Bobby Moore", 6), Player.new("Franz Beckenbauer", 5)
-    choice_3 = Player.new("Lev Yashin", 1), Player.new("Dino Zoff", 1)
-    choice_4 = Player.new("Didier Deschamps", 7), Player.new("Paul Breitner", 8)
-    choice_5 = Player.new("Cafu", 2), Player.new("Marco Tardelli", 14)
+    choice_1 = Player.new("Pele", 10), Player.new("Diego Maradona", 10), Player.new("Johann Cruyff", 14)
+    choice_2 = Player.new("Bobby Moore", 6), Player.new("Franz Beckenbauer", 5), Player.new("Paolo Maldini", 3)
+    choice_3 = Player.new("Lev Yashin", 1), Player.new("Dino Zoff", 1), Player.new("Gordon Banks", 1)
+    choice_4 = Player.new("Didier Deschamps", 7), Player.new("Paul Breitner", 8), Player.new("Andrea Pirlo", 21)
+    choice_5 = Player.new("Cafu", 2), Player.new("Carlos Alberto", 4), Player.new("Roberto Carlos", 4)
     begin
     puts "What would you like to call your team?"
     team_name = gets.chomp
