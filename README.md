@@ -1,14 +1,56 @@
-# This is the README file for the terminal application assessment.
+# Football Shootout
+
+### A five-a-side football simulation
+
+**Football Shootout** is a fun and compact football simulation game that allows the user to have their shot at glory.
+
+## System Requirements
+
+***
+
+Football Shootout is designed to work in any terminal workspace that has the Ruby progamming lanuage installed. If you want to play football shootout but do not have Ruby on your device, you can **[click here](https://rvm.io/rvm/install)** to get instructions on how to install Ruby.
+
+## Instructions
+
+***
+
+To run **Football Shootout** you need to open the terminal application on your device and open the root directory containing the program files.
+
+Enter this command
+
+    ./run_app.sh
+
+Then enter your first and last name (eg. if your name is Leo Messi)
+
+    ./run_app.sh Leo Messi
+
+Execute the command which will install any required Ruby gem files and then enter the program.
+
+## Contents
+
+***
+
+* [1. Software Development Plan](#1-software-development-plan)
+    * [1.1 Overview](#11-overview)
+    * [1.2 Why a Football Sim?](#12-why-a-football-sim)
+    * [1.3 Target Audience](#13-target-audience)
+    * [1.4 App Flow](#14-app-flow)
+* [2. Features](#2-features)
+    * [2.1 The Coin Toss](#21-the-coin-toss)
+    * [2.2 The Team Information Menu](#22-the-team-information-menu)
+
 
 ## The first step that I am taking is making a Github repo
 
 ## Here is the link to the Trello Board if needed
 ### [My Trello Board](https://trello.com/b/5awSV5j8/t1a3-terminal-application)
 
-# Football Shootout! - A five-a-side soccer sim
-## Software Development Plan
-## Purpose and Scope
-### Overview
+
+## 1. Software Development Plan
+
+***
+
+### 1.1 Overview
 This application is a simple yet fun game designed to simulate a real match experience for the user. Maximum enjoyment of using the application is the ultimate aim of this app.
 
 The user is able to view the rules of the game and view the team details via different menu options before entering the match menu.
@@ -17,17 +59,20 @@ They are able to select a team that they will control and select the team contro
 
 If the scores are even after the 5 phases of play, the match enters extra-time whereby the user has one last chance to secure victory! This match experience can be repeated as many times as the user wants.
 
-### Why a Football Sim?
+### 1.2 Why a Football Sim?
 This game has been created to solve the question of who is the best randomly generated 5-a-side football team in a digital environment. Football is the world game and everybody loves to win at sport and games. This application will return a winner and therefore resolve the afore mentioned question... **Who is the best?**
 
-### Target Audience
+### 1.3 Target Audience
 Football Shootout is aimed to provide entertainment for anyone who needs to waste some time and is appropriate for all age groups. The user does not need to have any knowledge of the rules of football to play as the rules are available in the main menu.
 
-### How to use the app
+### 1.4 App Flow
 Insert info here
 
-## Features of Football Shootout
-### The Coin-Toss
+## 2. Features
+
+***
+
+### 2.1 The Coin-Toss
 In order to determine which team kicks off and gains the advantage of an extra attack, a simple coin toss function has been built into the app.
 Each team in the Teams class features a coin toss variable which is populated with a random selection of either "heads" or "tails" (code below).
 
@@ -50,7 +95,7 @@ After a user selects their team and proceeds to the coin toss part of the game, 
 
 Ruby gem TTY-prompt was used to present the user with the "heads" or "tails" choice so no error handling was required in this case.
 
-### The Team Information Menu
+### 2.2 The Team Information Menu
 In order for the user to know what players they will have on their team and what football superstars they will potentially be facing, a simple team information menu option has been included as part of the main game menu.
 The array of 5 players within the Player class was built using the the Ruby gem "faker" to ensure a unique user experience with every launch of the application.
 Ruby gem TTY-prompt was also used to allow the user to select each team but in order to demonstrate error handling protocols within the app, the user is asked to manually enter an option to exit the selected team information screen. An ArgumentError is raised with retry if the user does not enter a response and a Standard Error message is raised with retry enters an invalid response (code below)

@@ -517,7 +517,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
     system "clear"
     user_team.score = 0
     bot_team.score = 0
-    print "Press return to the main menu: "
+    print "Press the 'enter key' to return to the main menu: "
     gets
 end
 
@@ -578,7 +578,7 @@ while option != "4"
             system "clear"
     end
 end
-puts "goodbye"
+puts "Thank you for playing Football Shootout"
 
         
 
