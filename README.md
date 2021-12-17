@@ -40,11 +40,15 @@ Execute the command which will install any required Ruby gem files and then ente
     * [2.2 The Team Information Menu](#22-the-team-information-menu)
     * [2.3 Team Creation](#23-team-creation)
     * [2.4 Extra Time](#24-extra-time)
+* [3. User Interaction](#3-user-interaction)
+    * [3.1 Command Line Arguments](#31-command-line-arguments)
+
 
 
 ## The first step that I am taking is making a Github repo
 
 ## Here is the link to the Trello Board if needed
+
 ### [My Trello Board](https://trello.com/b/5awSV5j8/t1a3-terminal-application)
 
 
@@ -53,6 +57,7 @@ Execute the command which will install any required Ruby gem files and then ente
 ***
 
 ### 1.1 Overview
+
 This application is a simple yet fun game designed to simulate a real match experience for the user. Maximum enjoyment of using the application is the ultimate aim of this app.
 
 The user is able to view the rules of the game and view the team details via different menu options before entering the match menu.
@@ -62,12 +67,15 @@ They are able to select a team that they will control and select the team contro
 If the scores are even after the 5 phases of play, the match enters extra-time whereby the user has one last chance to secure victory! This match experience can be repeated as many times as the user wants.
 
 ### 1.2 Why a Football Sim?
+
 This game has been created to solve the question of who is the best randomly generated 5-a-side football team in a digital environment. Football is the world game and everybody loves to win at sport and games. This application will return a winner and therefore resolve the afore mentioned question... **Who is the best?**
 
 ### 1.3 Target Audience
+
 Football Shootout is aimed to provide entertainment for anyone who needs to waste some time and is appropriate for all age groups. The user does not need to have any knowledge of the rules of football to play as the rules are available in the main menu.
 
 ### 1.4 App Usage
+
 The user will interact with elements of Football Shootout by means of text input (eg. entering the team name) and selection prompts created by the tty-prompt Ruby gem. Each selection will return a response based upon a randomly generated variable and ultimately decide who winse the game.
 
 ## 2. Features
@@ -75,6 +83,7 @@ The user will interact with elements of Football Shootout by means of text input
 ***
 
 ### 2.1 The Coin-Toss
+
 In order to determine which team kicks off and gains the advantage of an extra attack, a simple coin toss function has been built into the app.
 Each team in the Teams class features a coin toss variable which is populated with a random selection of either "heads" or "tails" (code below).
 
@@ -98,6 +107,7 @@ After a user selects their team and proceeds to the coin toss part of the game, 
 Ruby gem TTY-prompt was used to present the user with the "heads" or "tails" choice so no error handling was required in this case.
 
 ### 2.2 The Team Information Menu
+
 In order for the user to know what players they will have on their team and what football superstars they will potentially be facing, a simple team information menu option has been included as part of the main game menu.
 The array of 5 players within the Player class was built using the the Ruby gem "faker" to ensure a unique user experience with every launch of the application.
 Ruby gem TTY-prompt was also used to allow the user to select each team but in order to demonstrate error handling protocols within the app, the user is asked to manually enter an option to exit the selected team information screen. An ArgumentError is raised with retry if the user does not enter a response and a Standard Error message is raised with retry enters an invalid response (code below)
@@ -125,6 +135,7 @@ Ruby gem TTY-prompt was also used to allow the user to select each team but in o
 Integrity of the user experience is ensured by using the error rescue and retry functions by eliminating the possibility of the wrong result being returned from a given user input.
 
 ### 2.3 Team Creation
+
 Upon the start of the main game, the user is prompted to create a team of legends. They will name the team and then proceed to select 5 players. This team is built using the same variables featured in the Teams class. The truthy or falsey values of each attacking, defensive and extra time phase are generated within the create_team method (code below)
 
     def create_team(prompt,game,player_name,ascii_slant)
@@ -169,6 +180,7 @@ Upon the start of the main game, the user is prompted to create a team of legend
 
 Upon the selection of the players, the team information is printed for the user before continuing to the select opponent screen.
 ### 2.4 Extra Time
+
 The feature of Extra Time when the team scores are tied is important to the operation of the game as it returns an overall winner and therefore resolves the problem of who is the best 5-a-side football team!
 It's operation is invoked if the user team score variable is equal to the bot team score variable. Because this game has been made with the aim of maximising user enjoyment, it is the user who has the opportunity to seal the win and glory for their team. They are presented with a choice: shoot left or shoot right? The true variable for this choice is generated randomly upon the game launch and is passed into the Team class (code below).
 
@@ -222,3 +234,14 @@ To build this feature, an if-else statement was used nested within the parent wh
         end
     end
 
+## 3. User Interaction
+
+### 3.1 Command Line Arguments
+
+The user is asked in the instructions to enter their first and last name as arguments when launching the game. If use this function, it will create a personalised in-game experience where their name will be used on the launch screen and as the "Captain" of thier created team.
+
+    ./run_app.sh Leo Messi
+
+![Application launch screen with player name passed in as argument](./documents/readme_resources/welcome_screen.jpg)
+
+![Team selection confirmation screen with user name passed as argument](./documents/readme_resources/team_user_screen.jpg)
