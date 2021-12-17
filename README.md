@@ -47,6 +47,8 @@ Execute the command which will install any required Ruby gem files and then ente
     * [3.2.2 View Team Details](#322-view-team-details)
     * [3.2.3 Main Game](#323-main-game)
     * [3.2.4 Exit Game](#324-exit-game)
+* [4. Control Flow Diagram](#4-control-flow-diagram)
+* [5. Data Flow Diagram]
 
 
 ## The first step that I am taking is making a Github repo
@@ -332,4 +334,12 @@ If the selected shooting option returns a true value, the player wins otherwise 
 ### 3.2.4 Exit Game
 
 This option will allow the user to immediately exit the game.
+
+## 4. Control Flow Diagram
+
+![Control Flow Diagram](./documents/basic_app_flowchart_final.jpg)
+
+## 5. Data Flow Diagram
+
+![Control Flow Diagram](./documents/game_app_data_flow_final.jpg)
 
