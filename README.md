@@ -41,7 +41,11 @@ Execute the command which will install any required Ruby gem files and then ente
   * [1.2 Why a Football Sim?](#12-why-a-football-sim)
   * [1.3 Target Audience](#13-target-audience)
   * [1.4 App Usage](#14-app-usage)
-  * [1.5 Ruby Gems](#15-ruby-gems)
+  * [1.5 Data Structures](#15-data-structures)
+    * [1.5.1 Classes](#151-classes)
+    * [1.5.2 Seed](#152-seed)
+    * [1.5.3 Index](#153-index)
+  * [1.6 Ruby Gems](#16-ruby-gems)
 * [2. Features](#2-features)
   * [2.1 The Coin Toss](#21-the-coin-toss)
   * [2.2 The Team Information Menu](#22-the-team-information-menu)
@@ -84,7 +88,77 @@ Football Shootout is aimed to provide entertainment for anyone who needs to wast
 
 The user will interact with elements of Football Shootout by means of text input (eg. entering the team name) and selection prompts created by the tty-prompt Ruby gem. Each selection will return a response based upon a randomly generated variable and ultimately decide who winse the game.
 
-### 1.5 Ruby Gems
+### 1.5 Data Structures
+
+### 1.5.1 Classes
+
+The classes that are to be used in the Football Shootout application are as follows
+
+* **Players** - Used to store the name and shirt number values for a given player created in the game. The player information is printed to screen using the following method.
+
+        def to_s
+            "Number: #{@number} | Name: #{@name}"
+        end
+
+* **Teams** - Stores name, players, captain, score and all game event variables for a given team (see below code block).
+
+        def initialize(name, players, score, captain, toss, attack_1, attack_2, attack_3, defend_1, defend_2, defend_3, extra)
+            @name = name
+            @players = players
+            @score = score
+            @captain = captain
+            @toss = toss
+            @attack_1 = attack_1
+            @attack_2 = attack_2
+            @attack_3 = attack_3
+            @defend_1 = defend_1
+            @defend_2 = defend_2
+            @defend_3 = defend_3
+            @extra = extra
+        end
+
+* **Game** - This class collates all attributes required for the game to run in the index.rb file.
+
+### 1.5.2 Seed
+
+The seed.rb file exists to generate the bot team array and store all required variables to be used in the index.rb file in the game variable.
+
+    teams_array = [team_1, team_2, team_3, team_4]
+    game = Game.new("Football Shootout", "5-a-Side Football Sim", teams_array)
+    return game
+
+### 1.5.3 Index
+
+The index.rb file is the main game file containing the methods and operations used to run the game. Variables required for the operation of the game are listed at the top for easy reference.
+
+eg.
+
+    game = seed # This variable is from the seed.rb file
+    prompt = TTY::Prompt.new
+    ascii = Artii::Base.new
+    ascii_slant = Artii::Base.new :font => 'slant'
+    bar = TTY::ProgressBar.new("reloading options menu [:bar]", bar_format: :star, total: 15)
+
+All in-game methods are clearly named to identify their purpose
+
+eg.
+
+    # This is the method used by the main game to select the bot team
+    def team_select_bot(prompt,game)
+        bot_team = prompt.select("Choose your opponent...(use ↑/↓ arrows on your keyboard)", game.print_teams)
+        return bot_team
+    end
+
+    # This is the method used to prompt the user for a heads or tails answer in the coin toss feature
+    def coin_toss(prompt,game)
+        coin_options = ["heads", "tails"]
+        toss = prompt.select("Choose heads or tails to decide who kicks off!", coin_options)
+    return toss
+    end
+
+The [team creation](#23-team-creation) method in which the user creates the team which they control is also included within the index.rb
+
+### 1.6 Ruby Gems
 
 The following Ruby Gems are to be used in the application:
 
