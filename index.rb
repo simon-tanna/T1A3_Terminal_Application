@@ -157,10 +157,26 @@ def main_menu
 end
 
 # This is the method if user selects option 1 in main menu
-def rules
+def rules(player_name)
     system "clear"
-    puts "Hello World"
-    puts "Press any key to return to the main menu"
+    puts "Greetings #{player_name}. Thank you for choosing to play Football Shootout"
+    sleep(1)
+    puts "The rules of the game are simple..."
+    sleep(0.5)
+    puts "1. Create Your Team of Legends"
+    sleep(1)
+    puts "2. Select Your Opponent"
+    sleep(1)
+    puts "3. Select Heads or Tails in the Coin Toss"
+    sleep(1)
+    puts "4. The Game Begins
+        - The coin toss winner kicks off to have the first attacking chance
+        - Choose your action (eg. shoot, pass, block tackle ect...)"
+    sleep(1)
+    puts "Whoever scores the most goals wins!"
+    sleep(1)
+    puts "5. If scores are tied after 5 phases of play, the game enters EXTRA-TIME!"
+    puts "Press the 'enter' key to return to the main menu"
     gets
     system "clear"
 end
@@ -539,7 +555,7 @@ while option != "4"
     option = main_menu
     case option
         when "1"
-            rules
+            rules(player_name)
         when "2"
             info_menu(prompt,game,ascii)
         when "3"
