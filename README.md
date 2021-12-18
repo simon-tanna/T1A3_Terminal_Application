@@ -4,6 +4,12 @@
 
 **Football Shootout** is a fun and compact football simulation game that allows the user to have their shot at glory.
 
+## GitHub Repository
+
+***
+
+[T1A3_Terminal_Application](https://github.com/simon-tanna/T1A3_Terminal_Application)
+
 ## System Requirements
 
 ***
@@ -35,6 +41,7 @@ Execute the command which will install any required Ruby gem files and then ente
   * [1.2 Why a Football Sim?](#12-why-a-football-sim)
   * [1.3 Target Audience](#13-target-audience)
   * [1.4 App Usage](#14-app-usage)
+  * [1.5 Ruby Gems](#15-ruby-gems)
 * [2. Features](#2-features)
   * [2.1 The Coin Toss](#21-the-coin-toss)
   * [2.2 The Team Information Menu](#22-the-team-information-menu)
@@ -48,15 +55,8 @@ Execute the command which will install any required Ruby gem files and then ente
     * [3.2.3 Main Game](#323-main-game)
     * [3.2.4 Exit Game](#324-exit-game)
 * [4. Control Flow Diagram](#4-control-flow-diagram)
-* [5. Data Flow Diagram]
-
-
-## The first step that I am taking is making a Github repo
-
-## Here is the link to the Trello Board if needed
-
-### [My Trello Board](https://trello.com/b/5awSV5j8/t1a3-terminal-application)
-
+* [5. Data Flow Diagram](#5-data-flow-diagram)
+* [6. Project Management](#6-project-management)
 
 ## 1. Software Development Plan
 
@@ -83,6 +83,24 @@ Football Shootout is aimed to provide entertainment for anyone who needs to wast
 ### 1.4 App Usage
 
 The user will interact with elements of Football Shootout by means of text input (eg. entering the team name) and selection prompts created by the tty-prompt Ruby gem. Each selection will return a response based upon a randomly generated variable and ultimately decide who winse the game.
+
+### 1.5 Ruby Gems
+
+The following Ruby Gems are to be used in the application:
+
+* [bundler](https://github.com/rubygems/rubygems/) - This gem is used to collate, manage and install other Ruby gems used by the program. It provides a fast and efficent method of installing all required gems for the user upon launch of the game via the run_app.sh file.
+
+* [tty-prompt](https://github.com/piotrmurach/tty-prompt/) - 'tty-prompt' is used to create simple and error free selection options for the user of the application. The selected options will directly impact the in-game result, therefore this gem is considered to be essential to the operation of Football Shootout.
+
+* [colorize](https://github.com/fazibear/colorize/) - In order to make the terminal interface engaging and to add meaning to elements of on screen text, 'colorize' has been implemented throughout the game
+
+* [tty-progressbar](https://github.com/piotrmurach/tty-progressbar) - The developer is using 'tty-progressbar' to create heigtened sense of anticipation to the user experience.
+
+* [faker](https://github.com/faker-ruby/faker/) - 'faker' is being used to create a fresh roster of players for the bot teams at each game launch. Its implementation is designed to give the user a unique experienve each time they play.
+
+* [artii](https://github.com/miketierney/artii/) - In order to present a visually engaging text for the user, 'artii' is used to convert plain text to ascii art on screen.
+
+* [tty-font](https://github.com/piotrmurach/tty-font) - 'tty-font' is to be used on the occassion when a smaller ascii font is required.
 
 ## 2. Features
 
@@ -243,6 +261,8 @@ To build this feature, an if-else statement was used nested within the parent wh
 
 ## 3. User Interaction
 
+***
+
 ### 3.1 Command Line Arguments
 
 The user is asked in the instructions to enter their first and last name as arguments when launching the game. If use this function, it will create a personalised in-game experience where their name will be used on the launch screen and as the "Captain" of thier created team.
@@ -323,7 +343,7 @@ If the user selection returns a successful result for the defence, the following
 
 ![Bot team no goal confirmation](./documents/readme_resources/bot_no_goal.jpg)
 
-When the scores of the user and bot teams are equal after the 5 phases of play, extra time will be played and the user will have one chance to snatch victory for the team of legends. 
+When the scores of the user and bot teams are equal after the 5 phases of play, extra time will be played and the user will have one chance to snatch victory for the team of legends.
 
 ![Extra time screen](./documents/readme_resources/extra_time.jpg)
 
@@ -337,9 +357,36 @@ This option will allow the user to immediately exit the game.
 
 ## 4. Control Flow Diagram
 
+***
+
 ![Control Flow Diagram](./documents/basic_app_flowchart_final.jpg)
 
 ## 5. Data Flow Diagram
 
+***
+
 ![Control Flow Diagram](./documents/game_app_data_flow_final.jpg)
 
+## 6. Project Management
+
+***
+
+### [My Trello Board](https://trello.com/b/5awSV5j8/t1a3-terminal-application)
+
+Trello was used as the project management tool to keep the Football Shootout application on track. By using functions such as 'due date' and item check lists, the developer was able to manage workload and priorities effectively. Below is an example of how these elements were implemented.
+
+![Trello check](./documents/readme_resources/trello_index_check.jpg)
+
+A screenshot of the Trello board page was made on days when key developments occured while creating the app. These can be found in the documents folder of the application GitHub repository. Below are three examples:
+
+#### **09/12/2021**
+
+![Trello Log 09/12/2021](./documents/trello_daily_log/2021-12-09_1320.jpg)
+
+#### **12/12/2021**
+
+![Trello Log 12/12/2021](./documents/trello_daily_log/2021-12-11_1816.jpg)
+
+#### **17/12/2021**
+
+![Trello Log 17/12/2021](./documents/trello_daily_log/2021-12-17_1109.jpg)
