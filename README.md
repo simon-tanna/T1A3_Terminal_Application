@@ -269,9 +269,9 @@ The user is asked in the instructions to enter their first and last name as argu
 
     ./run_app.sh Leo Messi
 
-![Application launch screen with player name passed in as argument](./documents/readme_resources/welcome_screen.jpg)
+![Application launch screen with player name passed in as argument](./Documents/readme_resources/welcome_screen.jpg)
 
-![Team selection confirmation screen with user name passed as argument](./documents/readme_resources/team_user_screen.jpg)
+![Team selection confirmation screen with user name passed as argument](./Documents/readme_resources/team_user_screen.jpg)
 
 If the user chooses not to pass their name into the command line, a default "Football Fan" name will be displayed instead.
 
@@ -279,7 +279,7 @@ If the user chooses not to pass their name into the command line, a default "Foo
 
 The main menu consists of the following four options
 
-![Main menu options list](./documents/readme_resources/main_menu.jpg)
+![Main menu options list](./Documents/readme_resources/main_menu.jpg)
 
 ### 3.2.1 Rules
 
@@ -302,13 +302,13 @@ When selecting the '3' the user is immediately asked to enter a name for their t
 
 The user is then prompted to select 5 legendary players to populate the team roster.
 
-![Player selection menu](./documents/readme_resources/player_select.jpg)
+![Player selection menu](./Documents/readme_resources/player_select.jpg)
 
 Ruby gem tty-prompt was used to create all user interaction options within the main game as it provides an easy to use and error-free user experience.
 
 Once the team of legends has been created, the user will be prompted to select an opponent from the same list of bot teams viewable within the 'View Team Details" menu option and then proceed to the coin toss. A Ruby gem tty-progressbar animation is used to indicate a coin toss in progress, thereby enhancing the anticipation of the user pending the result.
 
-![Coin toss progress bar](./documents/readme_resources/coin_toss.jpg)
+![Coin toss progress bar](./Documents/readme_resources/coin_toss.jpg)
 
 The football game starts after the coin toss element of the game has been completed with the team who won the toss presented with the first attacking phase of the game. Winning the right to kick-off gives that team a better opportunity of out-scoring the opposition as it means they will have three chances to score a goal whereas the opponent will only get two chances.
 
@@ -321,11 +321,11 @@ In an attacking phase, the user will be presented with an option like the one be
 
 If the user team scores a goal, the following screen will displayed.
 
-![User team goal confirmation](./documents/readme_resources/team_goal.jpg)
+![User team goal confirmation](./Documents/readme_resources/team_goal.jpg)
 
 If the user team attacking selection results in no goal, the following message is displayed.
 
-![User team no goal confirmation](./documents/readme_resources/team_no_goal.jpg)
+![User team no goal confirmation](./Documents/readme_resources/team_no_goal.jpg)
 
 In a defending phase, the user will be presented with an option like the one below.
 
@@ -337,19 +337,19 @@ In a defending phase, the user will be presented with an option like the one bel
 
 If the bot team scores, the following screen featuring the team scores and progress bar is displayed.
 
-![Bot team goal confirmation](./documents/readme_resources/bot_goal.jpg)
+![Bot team goal confirmation](./Documents/readme_resources/bot_goal.jpg)
 
 If the user selection returns a successful result for the defence, the following message is displayed.
 
-![Bot team no goal confirmation](./documents/readme_resources/bot_no_goal.jpg)
+![Bot team no goal confirmation](./Documents/readme_resources/bot_no_goal.jpg)
 
 When the scores of the user and bot teams are equal after the 5 phases of play, extra time will be played and the user will have one chance to snatch victory for the team of legends.
 
-![Extra time screen](./documents/readme_resources/extra_time.jpg)
+![Extra time screen](./Documents/readme_resources/extra_time.jpg)
 
 If the selected shooting option returns a true value, the player wins otherwise the opposition will win and the following screen is displayed.
 
-![Final Result](./documents/readme_resources/game_result.jpg)
+![Final Result](./Documents/readme_resources/game_result.jpg)
 
 ### 3.2.4 Exit Game
 
@@ -359,13 +359,13 @@ This option will allow the user to immediately exit the game.
 
 ***
 
-![Control Flow Diagram](./documents/basic_app_flowchart_final.jpg)
+![Control Flow Diagram](./Documents/basic_app_flowchart_final.jpg)
 
 ## 5. Data Flow Diagram
 
 ***
 
-![Control Flow Diagram](./documents/game_app_data_flow_final.jpg)
+![Control Flow Diagram](./Documents/game_app_data_flow_final.jpg)
 
 ## 6. Project Management
 
@@ -375,18 +375,18 @@ This option will allow the user to immediately exit the game.
 
 Trello was used as the project management tool to keep the Football Shootout application on track. By using functions such as 'due date' and item check lists, the developer was able to manage workload and priorities effectively. Below is an example of how these elements were implemented.
 
-![Trello check](./documents/readme_resources/trello_index_check.jpg)
+![Trello check](./Documents/readme_resources/trello_index_check.jpg)
 
 A screenshot of the Trello board page was made on days when key developments occured while creating the app. These can be found in the documents folder of the application GitHub repository. Below are three examples:
 
 #### **09/12/2021**
 
-![Trello Log 09/12/2021](./documents/trello_daily_log/2021-12-09_1320.jpg)
+![Trello Log 09/12/2021](./Documents/trello_daily_log/2021-12-09_1320.jpg)
 
 #### **12/12/2021**
 
-![Trello Log 12/12/2021](./documents/trello_daily_log/2021-12-11_1816.jpg)
+![Trello Log 12/12/2021](./Documents/trello_daily_log/2021-12-11_1816.jpg)
 
 #### **17/12/2021**
 
-![Trello Log 17/12/2021](./documents/trello_daily_log/2021-12-17_1109.jpg)
+![Trello Log 17/12/2021](./Documents/trello_daily_log/2021-12-17_1109.jpg)
