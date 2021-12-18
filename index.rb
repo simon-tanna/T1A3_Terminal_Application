@@ -221,7 +221,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         end
         system "clear"
         # Here the game kicks off
-        puts ascii_slant.asciify("PEEP!!!").colorize(:blue)
+        puts ascii.asciify("PEEP!!!").colorize(:blue)
         sleep(0.4)
         puts "The referee blows the whistle to start the game. You are keeping posession of the ball well!".colorize(:green)
         sleep(2)
@@ -252,7 +252,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         if defend_choice_1 != user_team.defend_1
             bot_team.score += 1
             puts ascii_slant.asciify("GOAL for").colorize(:red)
-            puts ascii_slant.asciify("#{bot_team}").colorize(:red)
+            puts ascii.asciify("#{bot_team}").colorize(:red)
             sleep(1.5)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
             sleep(1.5)
@@ -294,8 +294,8 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         defend_choice_2 = team_defend_2(prompt,game,user_team,bot_team)
         if defend_choice_2 != user_team.defend_2
             bot_team.score += 1
-            puts ascii.asciify("GOAL for").colorize(:red)
-            puts ascii_slant.asciify("#{bot_team}").colorize(:red)
+            puts ascii_slant.asciify("GOAL for").colorize(:red)
+            puts ascii.asciify("#{bot_team}").colorize(:red)
             sleep(1.5)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
             sleep(1.5)
@@ -328,13 +328,14 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         sleep(1.5)
         puts ascii.asciify("#{bot_team}").colorize(:red)
         puts ascii.asciify("to kick off").colorize(:red)
+        sleep(1.5)
         # This is the progress bar informing the user that the game is about to kick off
         35.times do
             sleep(0.03)
             kickoff_bar.advance
         end
         system "clear"
-        puts ascii_slant.asciify("PEEP!!!").colorize(:blue)
+        puts ascii.asciify("PEEP!!!").colorize(:blue)
         sleep(0.4)
         puts "The referee blows the whistle to start the game. Your opponents are keeping posession of the ball well!".colorize(:red)
         sleep(2)
@@ -345,7 +346,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         if defend_choice_1 != user_team.defend_1
             bot_team.score += 1
             puts ascii_slant.asciify("GOAL for").colorize(:red)
-            puts ascii_slant.asciify("#{bot_team}").colorize(:red)
+            puts ascii.asciify("#{bot_team}").colorize(:red)
             sleep(1.5)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
             sleep(1.5)
@@ -388,7 +389,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         if defend_choice_2 != user_team.defend_2
             bot_team.score += 1
             puts ascii_slant.asciify("GOAL for").colorize(:red)
-            puts ascii_slant.asciify("#{bot_team}").colorize(:red)
+            puts ascii.asciify("#{bot_team}").colorize(:red)
             sleep(1.5)
             puts "Score #{user_team}: #{user_team.score} - #{bot_team.score} :#{bot_team}"
             sleep(1.5)
@@ -429,7 +430,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
         if defend_choice_3 != user_team.defend_3
             bot_team.score += 1
             puts ascii_slant.asciify("GOAL for").colorize(:red)
-            puts ascii_slant.asciify("#{bot_team}").colorize(:red)
+            puts ascii.asciify("#{bot_team}").colorize(:red)
             sleep(2.5)
         else
             puts "You have executed a perfectly timed tackle and regained posession. Well done!...".colorize(:green)
@@ -485,7 +486,7 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
             sleep(2)
             puts ascii_slant.asciify("GOAL!").colorize(:red)
             sleep(2)
-            puts ascii_slant.asciify("#{bot_team}").colorize(:red)
+            puts ascii.asciify("#{bot_team}").colorize(:red)
             puts ascii_slant.asciify("Have scored...").colorize(:red)
             sleep(2)
         end
@@ -497,22 +498,22 @@ def main_game(prompt,game,toss,user_team,bot_team,coin_bar,ascii,kickoff_bar,asc
             sleep(1.5)
             puts "#{bot_team}: #{bot_team.score}"
             sleep(1.5)
-            puts ascii_slant.asciify("#{bot_team}").colorize(:red)
+            puts ascii.asciify("#{bot_team}").colorize(:red)
             puts ascii_slant.asciify("are the winners!").colorize(:red)
             sleep(3)
             puts "Better luck next time"
-            sleep(3)
+            sleep(2)
     # This returns the result if the user team wins
     else
         puts "#{user_team}: #{user_team.score}"
         sleep(2)
         puts "#{bot_team}: #{bot_team.score}"
         sleep(2)
-        puts ascii_slant.asciify("#{user_team}").colorize(:green)
+        puts ascii.asciify("#{user_team}").colorize(:green)
         puts ascii_slant.asciify("are the winners!").colorize(:green)
-        sleep(2)
-        puts "Congratulations"
         sleep(3)
+        puts "Congratulations"
+        sleep(2)
     end
     sleep(2)
     system "clear"

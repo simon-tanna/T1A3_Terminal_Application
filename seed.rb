@@ -23,7 +23,7 @@ def seed
         team_4_players << Player.new(Faker::Sports::Football.unique.player, i)
     end
 
-    team_1_captain = "Gianluigi Buffon"
+    team_1_captain = "Gigi Buffon"
     team_2_captain = "Fabian Barthez"
     team_3_captain = "Rene Higuita"
     team_4_captain = "Mark Schwarzer"
