@@ -16,6 +16,8 @@
 
 Football Shootout is designed to work in any terminal workspace that has the Ruby progamming lanuage installed. If you want to play football shootout but do not have Ruby on your device, you can **[click here](https://rvm.io/rvm/install)** to get instructions on how to install Ruby.
 
+It is not recommended that Football Shootout be run from Git Bash for Windows due to issues experienced when using the 'select' menus created by Ruby gem 'tty-prompt'. See GitHub suggested [fixes](https://github.com/git-for-windows/git/wiki/FAQ#some-native-console-programs-dont-work-when-run-from-git-bash-how-to-fix-it).
+
 ## Instructions
 
 ***
