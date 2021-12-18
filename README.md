@@ -103,7 +103,7 @@ The classes that are to be used in the Football Shootout application are as foll
             "Number: #{@number} | Name: #{@name}"
         end
 
-* **Teams** - Stores name, players, captain, score and all game event variables for a given team (see below code block).
+* **Teams** - Stores name, players, captain, score and all game event variables for the user team (see below code block).
 
         def initialize(name, players, score, captain, toss, attack_1, attack_2, attack_3, defend_1, defend_2, defend_3, extra)
             @name = name
@@ -119,6 +119,8 @@ The classes that are to be used in the Football Shootout application are as foll
             @defend_3 = defend_3
             @extra = extra
         end
+
+**BotTeams** - Stores names, captains, players and score for the bot team class.
 
 * **Game** - This class collates all attributes required for the game to run in the index.rb file.
 

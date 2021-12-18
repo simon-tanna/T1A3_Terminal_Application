@@ -40,11 +40,6 @@ def team_select_info(prompt,game)
     return team
 end
 
-# def team_select_user(prompt,game)
-#     user_team = prompt.select("Choose your team...(use ↑/↓ arrows on your keyboard)", game.print_teams)
-#     return user_team
-# end
-
 # This is the method used by the main game to select the bot team
 def team_select_bot(prompt,game)
     bot_team = prompt.select("Choose your opponent...(use ↑/↓ arrows on your keyboard)", game.print_teams)
