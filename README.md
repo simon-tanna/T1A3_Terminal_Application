@@ -433,13 +433,13 @@ This option will allow the user to immediately exit the game.
 
 ***
 
-![Control Flow Diagram](./Documents/basic_app_flowchart_final.jpg)
+![Control Flow Diagram](./Documents/readme_resources/basic_app_flowchart_final.jpg)
 
 ## 5. Data Flow Diagram
 
 ***
 
-![Control Flow Diagram](./Documents/game_app_data_flow_final.jpg)
+![Control Flow Diagram](./Documents/readme_resources/game_app_data_flow_final.jpg)
 
 ## 6. Project Management
 
