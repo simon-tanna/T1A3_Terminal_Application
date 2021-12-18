@@ -69,36 +69,31 @@ end
 
 def team_defend_1(prompt,game,user_team,bot_team)
     defend_options = ["slide tackle", "block tackle"]
-    defend = prompt.select("#{bot_team} are looking dangerous and are taking the ball into the final third of the pitch. 
-             The winger is looking to go past you. Do you: ", defend_options)
+    defend = prompt.select("#{bot_team} are looking dangerous and are taking the ball into the final third of the pitch. The winger is looking to go past you. Do you: ", defend_options)
     return defend
 end
 
 def team_attack_2(prompt,game,user_team,bot_team)
     attack_options = ["dribble then shoot", "shoot from range"]
-    attack = prompt.select("#{user_team} have opened up space in the middle of the pitch. 
-             There is gaping hole in their defence with no team mates near you. Do you: ", attack_options)
+    attack = prompt.select("#{user_team} have opened up space in the middle of the pitch. There is gaping hole in their defence with no team mates near you. Do you: ", attack_options)
     return attack
 end
 
 def team_defend_2(prompt,game,user_team,bot_team)
     defend_options = ["slide tackle", "block tackle"]
-    defend = prompt.select("#{bot_team} have broken away and you are now the only player between
-             their striker and the goal! Do you: ", defend_options)
+    defend = prompt.select("#{bot_team} have broken away and you are now the only player between their striker and the goal! Do you: ", defend_options)
     return defend
 end
 
 def team_attack_3(prompt,game,user_team,bot_team)
     attack_options = ["pass", "shoot"]
-    attack = prompt.select("#{user_team} have the ball on the right hand side of the pitch. You have a team-mate in 
-             a good position outside the box but the opposing goalkeeper is off his line. Do you: ", attack_options)
+    attack = prompt.select("#{user_team} have the ball on the right hand side of the pitch. You have a team-mate in a good position outside the box but the opposing goalkeeper is off his line. Do you: ", attack_options)
     return attack
 end
 
 def team_defend_3(prompt,game,user_team,bot_team)
     defend_options = ["slide tackle", "block tackle"]
-    defend = prompt.select("#{bot_team} are storming into your half of the field. Their striker is about to 
-             shoot from distance. Do you: ", defend_options)
+    defend = prompt.select("#{bot_team} are storming into your half of the field. Their striker is about to shoot from distance. Do you: ", defend_options)
     return defend
 end
 
@@ -553,14 +548,14 @@ while option != "4"
             system "clear"
             puts ascii_slant.asciify("Your Team of Legends").colorize(:green)
             puts user_team.all_team_info
-            print "Press any key to continue and select your opponent..."
+            print "Press the 'enter key' to continue and select your opponent..."
             gets
             system "clear"
             bot_team = team_select_bot(prompt,game)
             system "clear"
             puts ascii_slant.asciify("Your Opponent").colorize(:red)
             puts bot_team.all_team_info
-            print "Press any key to continue to the coin toss..."
+            print "Press the 'enter key' to continue to the coin toss..."
             gets
             system "clear"
             toss = coin_toss(prompt,game)
@@ -581,9 +576,3 @@ while option != "4"
     end
 end
 puts "Thank you for playing Football Shootout"
-
-        
-
-        
-
-# puts game.print_teams

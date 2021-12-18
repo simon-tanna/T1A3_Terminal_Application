@@ -46,6 +46,7 @@ Execute the command which will install any required Ruby gem files and then ente
     * [1.5.2 Seed](#152-seed)
     * [1.5.3 Index](#153-index)
   * [1.6 Ruby Gems](#16-ruby-gems)
+  * [1.7 Testing](#17-testing)
 * [2. Features](#2-features)
   * [2.1 The Coin Toss](#21-the-coin-toss)
   * [2.2 The Team Information Menu](#22-the-team-information-menu)
@@ -164,6 +165,8 @@ The following Ruby Gems are to be used in the application:
 
 * [bundler](https://github.com/rubygems/rubygems/) - This gem is used to collate, manage and install other Ruby gems used by the program. It provides a fast and efficent method of installing all required gems for the user upon launch of the game via the run_app.sh file.
 
+* [rspec](https://github.com/rspec/rspec-metagem) - The 'rspec' gem is used to perform the automated testing of code in the spec file.
+
 * [tty-prompt](https://github.com/piotrmurach/tty-prompt/) - 'tty-prompt' is used to create simple and error free selection options for the user of the application. The selected options will directly impact the in-game result, therefore this gem is considered to be essential to the operation of Football Shootout.
 
 * [colorize](https://github.com/fazibear/colorize/) - In order to make the terminal interface engaging and to add meaning to elements of on screen text, 'colorize' has been implemented throughout the game
@@ -175,6 +178,12 @@ The following Ruby Gems are to be used in the application:
 * [artii](https://github.com/miketierney/artii/) - In order to present a visually engaging text for the user, 'artii' is used to convert plain text to ascii art on screen.
 
 * [tty-font](https://github.com/piotrmurach/tty-font) - 'tty-font' is to be used on the occassion when a smaller ascii font is required.
+
+### 1.7 Testing
+
+The testing for class methods is performed using the 'rspec' Ruby gem. 3 tests were performed and passed. The testing code can be found in the spec directory of the GitHub respository.
+
+Manual testing was performed on aspects of the Football Shootout app to check the integrity of the prompt features and to ensure that the code was returning a correct result. Results of these tests can be found [here](./Documents/Football_Shootout_Manual_Tests.pdf).
 
 ## 2. Features
 

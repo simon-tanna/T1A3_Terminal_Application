@@ -107,6 +107,3 @@ describe "Test creation of players and teams for the game class" do
         expect(game.teams[0].players[2].number).to eq(3)
     end
 end
-
-    
-
